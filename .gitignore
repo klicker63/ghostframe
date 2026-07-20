@@ -1,18 +1,15 @@
 node_modules/
 dist/
+.vite/
 .vercel/
-
-# Local environment files
-.env
-.env.*
+.env*
 !.env.example
-
-# Local development output
-*.local
 *.log
-
-# Editor and operating-system files
 .DS_Store
 Thumbs.db
 .vscode/
 .idea/
+.edit-recovery/
+.safety-backups/
+patch-test.tmp
+patch-check.tmp

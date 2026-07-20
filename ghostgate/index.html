@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#050708">
+  <title>GhostGate | AI agent crash testing and evidence</title>
+  <meta name="description" content="GhostGate runs AI agents through controlled hostile scenarios, records tool and permission behavior, and exports evidence for production-readiness review.">
+  <link rel="canonical" href="https://ghostframe-inky.vercel.app/ghostgate/">
+  <meta property="og:type" content="product">
+  <meta property="og:url" content="https://ghostframe-inky.vercel.app/ghostgate/">
+  <meta property="og:title" content="GhostGate | AI agent crash testing and evidence">
+  <meta property="og:description" content="Test agent behavior under hostile inputs, poisoned tools, and permission pressure before production.">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="GhostGate | AI agent crash testing and evidence">
+  <meta name="twitter:description" content="Controlled hostile scenarios. Recorded behavior. Reviewable evidence.">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"GhostGate","url":"https://ghostframe-inky.vercel.app/ghostgate/","applicationCategory":"SecurityApplication","description":"A crash-test and evidence platform for AI agents, available through limited private pilots.","offers":{"@type":"Offer","availability":"https://schema.org/LimitedAvailability"},"creator":{"@type":"Organization","name":"GhostFrame Studios"}}</script>
+</head>
+<body class="acquisition-page ghostgate-page">
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="header acquisition-header">
+    <a class="logo" href="/" aria-label="GhostFrame Studios home"><svg viewBox="0 0 42 42" aria-hidden="true"><path d="M9 10.5 21 4l12 6.5v9L21 26l-7-3.8v6.3l7 3.8 12-6.5"/><path d="M21 12.5 14 16v6.2M21 12.5l7 3.8v6.2L21 26"/></svg><span><strong>GhostFrame</strong><small>Studios</small></span></a>
+    <nav class="nav" data-nav data-open="false" aria-label="Primary navigation">
+      <a href="#problem"><small>01</small>Problem</a><a href="#process"><small>02</small>Process</a><a href="#evaluate"><small>03</small>Evaluation</a><a href="#evidence"><small>04</small>Evidence</a><a href="#fit"><small>05</small>Who it’s for</a><a class="nav-cta" href="#pilot">Request a private pilot ↗</a>
+    </nav>
+    <button class="menu" type="button" data-menu-button aria-expanded="false" aria-label="Toggle navigation"><i></i></button>
+  </header>
+
+  <main id="main">
+    <section class="acq-hero gate-hero" aria-labelledby="gate-title">
+      <div class="acq-shell gate-hero-grid">
+        <div class="gate-title-block" data-reveal>
+          <p class="signal-label">GhostGate / AI-agent crash test + evidence</p>
+          <h1 id="gate-title">Know how your agent behaves when the environment turns hostile.</h1>
+        </div>
+        <div class="gate-summary" data-reveal>
+          <p>GhostGate is a crash-test and evidence platform for AI agents. It runs agents through controlled hostile scenarios, records their behavior, identifies unsafe tool use and permission failures, and produces an evidence package for production-readiness review.</p>
+          <div class="acq-actions"><a class="acq-button primary" href="#pilot">Request a Private Pilot <span aria-hidden="true">↗</span></a><a class="acq-button secondary" href="#process">See How It Works <span aria-hidden="true">↓</span></a></div>
+        </div>
+        <div class="boundary-visual" data-reveal aria-label="Illustrative permission boundary map">
+          <div class="boundary-label"><span>PERMISSION BOUNDARY MAP</span><small>ILLUSTRATIVE SYSTEM VIEW</small></div>
+          <svg viewBox="0 0 900 430" role="img" aria-label="An agent path moving through tool actions and meeting a permission boundary">
+            <rect class="zone allowed" x="50" y="74" width="460" height="280" rx="2"/><rect class="zone restricted" x="580" y="74" width="270" height="280" rx="2"/>
+            <path class="route-base" d="M85 220h120l90-100 100 190 115-90h105l90-88 100 88"/><path class="route-live" d="M85 220h120l90-100 100 190 115-90h105"/>
+            <g class="map-node"><circle cx="85" cy="220" r="9"/><text x="70" y="250">AGENT</text></g><g class="map-node"><circle cx="295" cy="120" r="9"/><text x="253" y="100">TOOL READ</text></g><g class="map-node"><circle cx="395" cy="310" r="9"/><text x="350" y="340">POISONED RESULT</text></g><g class="map-node"><circle cx="510" cy="220" r="9"/><text x="480" y="195">RETRY</text></g><g class="map-block"><rect x="566" y="203" width="28" height="28" transform="rotate(45 580 217)"/><text x="610" y="221">APPROVAL GATE</text></g>
+          </svg>
+          <div class="boundary-key"><span><i></i>Observed path</span><span><i></i>Allowed zone</span><span><i></i>Restricted zone</span><strong>BLOCKED / EVIDENCE PRESERVED</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="acq-section gate-problem" id="problem" aria-labelledby="gate-problem-title">
+      <div class="acq-shell">
+        <div class="section-intro" data-reveal><p class="section-code">01 / THE PROBLEM</p><div><p class="signal-label">A successful demo can still conceal unsafe behavior</p><h2 id="gate-problem-title">Agents inherit risk from every instruction, tool, permission, and system they touch.</h2></div></div>
+        <div class="threat-layout" data-reveal>
+          <p>Normal task testing tells you whether the happy path works. It does not show what happens when a support ticket carries hidden instructions, a repository contains malicious context, a tool returns poisoned data, or an agent finds another path after a blocked action.</p>
+          <ul class="threat-list"><li>Prompt injection</li><li>Poisoned tool results</li><li>Permission confusion</li><li>Unsafe redirects</li><li>Encoded instructions</li><li>Fragmented data exfiltration</li><li>Draft-to-send escalation</li><li>Repeated blocked-action attempts</li><li>Cross-system abuse</li><li>Compromised support tickets</li><li>Malicious repository content</li></ul>
+        </div>
+        <div class="question-contrast compact" data-reveal><div><span>FUNCTIONAL QUESTION</span><p>Can the agent finish?</p></div><div><span>TRUST QUESTION</span><p>What does it do under pressure—and can we prove it?</p></div></div>
+      </div>
+    </section>
+
+    <section class="acq-section process-section" id="process" aria-labelledby="gate-process-title">
+      <div class="acq-shell">
+        <div class="section-intro" data-reveal><p class="section-code">02 / HOW GHOSTGATE WORKS</p><div><p class="signal-label">Controlled evaluation from setup to export</p><h2 id="gate-process-title">Five stages. One inspectable record.</h2></div></div>
+        <ol class="process-track detailed" data-reveal>
+          <li><span>01</span><div><h3>Connect the agent</h3><p>Choose a supported adapter, define the tools and systems in scope, and establish the evaluation baseline.</p></div><em>ADAPTER + BASELINE</em></li>
+          <li><span>02</span><div><h3>Run hostile scenarios</h3><p>Select relevant scenario packs and execute them inside a controlled environment.</p></div><em>CONTROLLED PRESSURE</em></li>
+          <li><span>03</span><div><h3>Observe behavior</h3><p>Capture tool proposals, permission decisions, repeated attempts, transitions, and downstream actions.</p></div><em>BEHAVIOR TIMELINE</em></li>
+          <li><span>04</span><div><h3>Define boundaries</h3><p>Review failures and generate recommended allowed tools, denied tools, context limits, and approval gates.</p></div><em>PERMISSION ENVELOPE</em></li>
+          <li><span>05</span><div><h3>Export evidence</h3><p>Compile findings, scenario results, policy output, metadata, and readable reports into a portable bundle.</p></div><em>DECISION PACKAGE</em></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="acq-section evaluate-section" id="evaluate" aria-labelledby="evaluate-title">
+      <div class="acq-shell">
+        <div class="section-intro" data-reveal><p class="section-code">03 / WHAT GHOSTGATE EVALUATES</p><div><p class="signal-label">Behavior, boundaries, escalation, and recovery</p><h2 id="evaluate-title">The evaluation follows the action—not just the final answer.</h2></div></div>
+        <div class="evaluation-matrix" data-reveal role="list">
+          <div role="listitem"><span>01</span><strong>Tool-use behavior</strong><p>What the agent proposes, invokes, or chains together.</p></div>
+          <div role="listitem"><span>02</span><strong>Permission boundaries</strong><p>Whether access stays within the intended envelope.</p></div>
+          <div role="listitem"><span>03</span><strong>Approval handling</strong><p>How the agent reacts to required, missing, or fake approval.</p></div>
+          <div role="listitem"><span>04</span><strong>Data access</strong><p>What information is read, transformed, or moved.</p></div>
+          <div role="listitem"><span>05</span><strong>Escalation attempts</strong><p>Direct and alternate paths toward higher-impact actions.</p></div>
+          <div role="listitem"><span>06</span><strong>Repeated unsafe behavior</strong><p>Retries, reframing, and low-and-slow attempts after denial.</p></div>
+          <div role="listitem"><span>07</span><strong>Cross-system actions</strong><p>How one tool or environment affects another.</p></div>
+          <div role="listitem"><span>08</span><strong>Recovery after blocks</strong><p>Whether the agent stops, asks, adapts safely, or routes around control.</p></div>
+          <div role="listitem"><span>09</span><strong>Poisoned context</strong><p>Behavior when instructions or tool results cannot be trusted.</p></div>
+          <div role="listitem"><span>10</span><strong>Evidence completeness</strong><p>Whether the run preserves enough context for review.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="acq-section evidence-system" id="evidence" aria-labelledby="gate-evidence-title">
+      <div class="acq-shell">
+        <div class="section-intro" data-reveal><p class="section-code">04 / EVIDENCE OUTPUT</p><div><p class="signal-label">Readable for decision-makers. Inspectable for technical teams.</p><h2 id="gate-evidence-title">The evaluation ends with artifacts your team can take away.</h2></div></div>
+        <div class="evidence-workbench" data-reveal>
+          <div class="trust-panel">
+            <div class="trust-top"><span>AGENT TRUST REPORT</span><small>ILLUSTRATIVE STRUCTURE</small></div>
+            <div class="trust-verdict"><span>TRUST VERDICT</span><strong>CONDITIONAL</strong><p>High-impact boundary failure observed under poisoned context.</p></div>
+            <div class="finding-summary"><span>FINDING / GG-004</span><h3>Blocked export retried through a secondary tool.</h3><p>The behavior record connects the initial tool proposal, policy decision, alternate path, and final outcome.</p></div>
+            <div class="timeline-mini"><i></i><i></i><i></i><i></i><i></i><span>INGEST</span><span>PROPOSE</span><span>BLOCK</span><span>RETRY</span><span>RECORD</span></div>
+          </div>
+          <div class="bundle-tree">
+            <div class="tree-head"><span>EVIDENCE_BUNDLE/</span><small>PORTABLE EXPORT</small></div>
+            <ul><li><b>01</b>agent-trust-report.html <em>PRINTABLE</em></li><li><b>02</b>agent-trust-report.json <em>STRUCTURED</em></li><li><b>03</b>permission-envelope.json <em>POLICY</em></li><li><b>04</b>permission-envelope.yaml <em>POLICY</em></li><li><b>05</b>behavior-timeline.json <em>TRACE</em></li><li><b>06</b>findings.json <em>IMPACT</em></li><li><b>07</b>scenario-results.json <em>RESULTS</em></li><li><b>08</b>evaluation-metadata.json <em>CONTEXT</em></li><li><b>09</b>manifest + readme <em>INDEX</em></li></ul>
+          </div>
+        </div>
+        <p class="evidence-note" data-reveal>GhostGate produces Agent Trust Reports, Permission Envelopes, behavior timelines, findings and impact summaries, scenario results, evaluation metadata, JSON reports, printable HTML reports, evidence bundles, and permission policies in JSON and YAML. These outputs document a controlled evaluation; they are not a certification or guarantee of complete agent safety.</p>
+      </div>
+    </section>
+
+    <section class="acq-section product-proof" aria-labelledby="product-proof-title">
+      <div class="acq-shell proof-grid">
+        <div data-reveal><p class="section-code">05 / CURRENT PRODUCT PROOF</p><p class="signal-label">Capabilities represented in current GhostGate materials</p><h2 id="product-proof-title">A working evaluation surface, not a future-feature wall.</h2><p>GhostGate’s current product materials describe the execution, recording, policy, and export capabilities below. No customer, certification, deployment, or performance claims are implied.</p></div>
+        <div class="capability-ledger compact-ledger" data-reveal>
+          <div><span>RUN</span><strong>Controlled scenario library, saved evaluations, and scenario packs</strong></div>
+          <div><span>ADAPT</span><strong>Deterministic adapters and a generic HTTP agent adapter</strong></div>
+          <div><span>EXTEND</span><strong>Optional live LLM sample-agent support and GitHub sandbox adapter</strong></div>
+          <div><span>RECORD</span><strong>Behavior recorder, findings, timelines, and evaluation metadata</strong></div>
+          <div><span>BOUND</span><strong>Policy baselines and Permission Envelope JSON/YAML exports</strong></div>
+          <div><span>EXPORT</span><strong>Agent Trust Reports, downloadable evidence bundles, and CLI evaluation runner</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="acq-section fit-section" id="fit" aria-labelledby="fit-title">
+      <div class="acq-shell">
+        <div class="section-intro" data-reveal><p class="section-code">06 / WHO GHOSTGATE IS FOR</p><div><p class="signal-label">One evidence layer across technical and buying teams</p><h2 id="fit-title">For teams that need more than “the demo worked.”</h2></div></div>
+        <div class="buyer-lines" data-reveal>
+          <div><span>AI AGENT STARTUP</span><p>Prove how your agent behaves before an enterprise buyer asks.</p></div>
+          <div><span>SECURITY TEAM</span><p>Test permissions, tool use, and hostile-input behavior in a controlled environment.</p></div>
+          <div><span>PLATFORM TEAM</span><p>Create repeatable evaluations across agent versions, adapters, and policy baselines.</p></div>
+          <div><span>ENTERPRISE PILOT LEAD</span><p>Export technical evidence that can be reviewed outside the GhostGate interface.</p></div>
+          <div><span>GOVERNANCE + COMPLIANCE</span><p>Review documented scope, observed behavior, findings, and recommended controls without treating the run as certification.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="acq-section boundaries-section" id="boundaries" aria-labelledby="boundaries-title">
+      <div class="acq-shell boundaries-layout" data-reveal>
+        <div><p class="section-code">07 / PILOT BOUNDARIES</p><p class="signal-label">Clear limits are part of credible evaluation</p><h2 id="boundaries-title">What the current private-pilot model does—and does not—mean.</h2></div>
+        <div class="boundary-copy"><p>GhostGate is a local-first beta used in controlled private-pilot workflows. Adapter maturity varies, and some connections are sample or experimental. Evaluation quality depends on the selected scenarios, policies, agent configuration, and environment.</p><ul class="plain-list"><li>It evaluates defined behavior under controlled conditions.</li><li>It recommends permission boundaries; it does not certify compliance.</li><li>It can support production policy decisions; it does not guarantee safe production behavior.</li><li>It does not replace architecture review, penetration testing, monitoring, or incident response.</li><li>Universal framework integration is not claimed.</li></ul></div>
+      </div>
+    </section>
+
+    <section class="pilot-section" id="pilot" aria-labelledby="pilot-title">
+      <div class="acq-shell pilot-layout">
+        <div class="pilot-copy" data-reveal>
+          <p class="section-code">08 / PRIVATE PILOT</p><p class="signal-label">A scoped evaluation built around your agent</p><h2 id="pilot-title">Request a GhostGate Private Pilot.</h2>
+          <p>A pilot starts with what the agent can access and what your team needs to learn. Scope is confirmed before any evaluation work begins.</p>
+          <ol class="pilot-includes"><li>Agent connection or adapter setup</li><li>Relevant scenario-pack selection</li><li>Controlled evaluation runs</li><li>Behavior and findings review</li><li>Agent Trust Report</li><li>Permission Envelope</li><li>Downloadable evidence bundle</li><li>Prioritized remediation guidance</li></ol>
+          <p class="pilot-small">Submitting this form opens a pre-addressed email in your mail application. It does not send data to a third-party form service.</p>
+        </div>
+        <form class="pilot-form" data-pilot-form novalidate data-reveal>
+          <div class="form-head"><span>PILOT QUALIFICATION / 01</span><small>USEFUL SCOPE ONLY</small></div>
+          <div class="field-row"><label for="pilot-name">Name</label><input id="pilot-name" name="name" autocomplete="name" required></div>
+          <div class="field-row"><label for="pilot-email">Work email</label><input id="pilot-email" name="email" type="email" autocomplete="email" required></div>
+          <div class="field-row"><label for="pilot-company">Company</label><input id="pilot-company" name="company" autocomplete="organization" required></div>
+          <div class="field-row"><label for="pilot-role">Role</label><input id="pilot-role" name="role" autocomplete="organization-title" required></div>
+          <div class="field-row"><label for="pilot-access">What can the agent access?</label><textarea id="pilot-access" name="access" rows="3" placeholder="Email, GitHub, browser, internal APIs, files…" required></textarea></div>
+          <div class="field-row"><label for="pilot-stage">Current deployment stage</label><select id="pilot-stage" name="stage" required><option value="">Select a stage</option><option>Prototype</option><option>Internal testing</option><option>Enterprise pilot</option><option>Limited production</option><option>Production</option></select></div>
+          <div class="field-row"><label for="pilot-goal">What do you want evaluated?</label><textarea id="pilot-goal" name="goal" rows="4" required></textarea></div>
+          <p class="form-status" data-form-status aria-live="polite"></p>
+          <button class="acq-button primary submit-button" type="submit">Prepare Pilot Request <span aria-hidden="true">↗</span></button>
+          <p class="form-fallback">Prefer direct email? <a href="mailto:klicker01@gmail.com?subject=GhostGate%20Private%20Pilot%20Inquiry">Contact GhostFrame Studios.</a></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer acquisition-footer">
+    <div class="footer-grid"><a class="logo" href="/" aria-label="GhostFrame Studios home"><svg viewBox="0 0 42 42" aria-hidden="true"><path d="M9 10.5 21 4l12 6.5v9L21 26l-7-3.8v6.3l7 3.8 12-6.5"/><path d="M21 12.5 14 16v6.2M21 12.5l7 3.8v6.2L21 26"/></svg><span><strong>GhostFrame</strong><small>Studios</small></span></a><nav aria-label="Footer navigation"><a href="/">Studio home</a><a href="#problem">Problem</a><a href="#process">Process</a><a href="#evaluate">Evaluation</a><a href="#evidence">Evidence</a><a href="#boundaries">Boundaries</a><a href="#pilot">Private pilot</a></nav></div>
+    <div class="legal"><span>© <span data-year></span> GhostFrame Studios</span><span>GhostGate / Controlled evaluation / Private beta</span></div>
+  </footer>
+  <script type="module" src="/src/site.js"></script>
+</body>
+</html>
