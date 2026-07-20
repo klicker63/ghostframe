@@ -7,6 +7,7 @@ export default defineConfig({
       input: {
         home: resolve(import.meta.dirname, 'index.html'),
         ghostgate: resolve(import.meta.dirname, 'ghostgate/index.html'),
+        evidence: resolve(import.meta.dirname, 'ghostgate/evidence/index.html'),
         proofline: resolve(import.meta.dirname, 'proofline/index.html'),
       },
     },

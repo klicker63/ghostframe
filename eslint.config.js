@@ -2,10 +2,17 @@ import js from '@eslint/js';
 import globals from 'globals';
 
 export default [
-  { ignores: ['dist/**'] },
+  { ignores: ['dist/**', '.vercel/**', '.safety-backups/**', '.edit-recovery/**'] },
   {
     files: ['**/*.js'],
-    languageOptions: { globals: globals.browser },
     rules: js.configs.recommended.rules,
+  },
+  {
+    files: ['src/**/*.js'],
+    languageOptions: { globals: globals.browser },
+  },
+  {
+    files: ['api/**/*.js', 'test/**/*.js', '*.config.js'],
+    languageOptions: { globals: { ...globals.node, ...globals.webworker } },
   },
 ];
