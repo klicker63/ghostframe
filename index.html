@@ -40,23 +40,23 @@
         <div class="hero-message" data-reveal>
           <p class="signal-label">GhostFrame Studios / Flagship system</p>
           <h1 id="home-title">Crash-test AI agents before production does it for you.</h1>
-          <p class="hero-summary">GhostGate places AI agents inside controlled hostile scenarios, records how they use tools and permissions, and produces evidence showing whether they can be trusted in production.</p>
+          <p class="hero-summary">GhostGate places AI agents inside controlled hostile scenarios, records how they use tools and permissions, and produces evidence for production-readiness decisions.</p>
           <div class="acq-actions">
             <a class="acq-button primary" href="/ghostgate/#pilot">Request a Private Pilot <span aria-hidden="true">↗</span></a>
-            <a class="acq-button secondary" href="#process">See How GhostGate Works <span aria-hidden="true">↓</span></a>
+            <a class="acq-button secondary" href="/ghostgate/evidence/">View Sample Evidence <span aria-hidden="true">→</span></a>
           </div>
           <p class="hero-note"><span></span>Built for teams deploying agents across email, code, APIs, files, browsers, databases, and business systems.</p>
         </div>
-        <div class="evaluation-console" data-reveal aria-label="Illustrative GhostGate behavior timeline">
+        <div class="evaluation-console" data-reveal aria-label="Sanitized GhostGate approved baseline timeline">
           <div class="console-bar"><span>GG / EVALUATION RECORD</span><span><i></i>CONTROLLED RUN</span></div>
-          <div class="console-context"><p>SCENARIO / POISONED SUPPORT TICKET</p><span>Illustrative interface representation</span></div>
+          <div class="console-context"><p>GITHUB SANDBOX BASELINE</p><span>Sanitized dry-run sample</span></div>
           <ol class="event-stream">
-            <li class="event-pass"><time>00:04</time><span><b>Context received</b>Ticket content parsed</span><em>OBSERVED</em></li>
-            <li class="event-warn"><time>00:11</time><span><b>Tool proposed</b>customer_records.export</span><em>REVIEW</em></li>
-            <li class="event-block"><time>00:12</time><span><b>Boundary decision</b>Approval requirement missing</span><em>BLOCKED</em></li>
-            <li class="event-warn"><time>00:18</time><span><b>Alternate path</b>Agent retries through email draft</span><em>FLAGGED</em></li>
+            <li class="event-pass"><time>01</time><span><b>Scenario started</b>Poisoned GitHub issue</span><em>CONTROLLED</em></li>
+            <li class="event-pass"><time>02</time><span><b>Tool observed</b>github.read_issue</span><em>ALLOWED</em></li>
+            <li class="event-pass"><time>03</time><span><b>Policy consulted</b>policy.read_internal_policy</span><em>ALLOWED</em></li>
+            <li class="event-pass"><time>04</time><span><b>Scenario completed</b>No findings recorded</span><em>PASSED</em></li>
           </ol>
-          <div class="console-verdict"><span>TRUST VERDICT</span><strong>CONDITIONAL</strong><p>Unsafe escalation path requires policy remediation.</p></div>
+          <div class="console-verdict"><span>BASELINE RESULT</span><strong>APPROVED</strong><p>10 of 10 simulated scenarios passed. Human review required.</p></div>
           <svg class="console-geometry" viewBox="0 0 220 220" aria-hidden="true"><path d="M110 10 201 62v96l-91 52-91-52V62Z"/><path d="M110 45 170 79v63l-60 34-60-34V79Z"/><path d="M110 10v200M19 62l182 96M201 62 19 158"/></svg>
         </div>
       </div>
@@ -96,13 +96,13 @@
           <p class="section-code">03 / REVIEWABLE OUTPUT</p><p class="signal-label">Evidence that leaves the interface</p><h2 id="evidence-title">A decision package, not another dashboard.</h2>
           <p>GhostGate turns controlled evaluation runs into artifacts security, engineering, governance, and enterprise pilot teams can inspect together.</p>
           <ul class="plain-list"><li>Agent Trust Report</li><li>Permission Envelope in JSON and YAML</li><li>Behavior timeline and scenario results</li><li>Findings, impact summaries, and evaluation metadata</li><li>Printable HTML report and downloadable evidence bundle</li></ul>
-          <a class="acq-button secondary" href="/ghostgate/#evidence">See the evidence system <span aria-hidden="true">→</span></a>
+          <a class="acq-button secondary" href="/ghostgate/evidence/">View Sample Evidence <span aria-hidden="true">→</span></a>
         </div>
-        <div class="report-preview" data-reveal aria-label="Stylized Agent Trust Report preview">
-          <div class="report-head"><span>AGENT TRUST REPORT</span><small>ILLUSTRATIVE STRUCTURE</small></div>
-          <div class="report-score"><span>VERDICT</span><strong>CONDITIONAL TRUST</strong><em>REMEDIATION REQUIRED</em></div>
-          <div class="severity-bars"><div><span>HIGH</span><i style="--bar:72%"></i><b>Boundary escape</b></div><div><span>MED</span><i style="--bar:48%"></i><b>Repeated attempt</b></div><div><span>INFO</span><i style="--bar:26%"></i><b>Recovery observed</b></div></div>
-          <div class="report-trace"><span>TRACE / 0042</span><code>ticket.read → records.export → policy.block → email.draft</code></div>
+        <div class="report-preview" data-reveal aria-label="Sanitized Agent Trust Report preview">
+          <div class="report-head"><span>AGENT TRUST REPORT</span><small>SANITIZED SAMPLE</small></div>
+          <div class="report-score"><span>BASELINE RESULT</span><strong>APPROVED</strong><em>HUMAN REVIEW REQUIRED</em></div>
+          <div class="severity-bars"><div><span>RUNS</span><i></i><b>10 simulated scenarios</b></div><div><span>PASS</span><i></i><b>10 scenarios passed</b></div><div><span>RISK</span><i></i><b>0 findings / score 0</b></div></div>
+          <div class="report-trace"><span>SAMPLE / GG-PUBLIC-GH-SAFE-001</span><code>dry-run GitHub environment → 36 actions observed → approved baseline</code></div>
           <div class="report-files"><span>REPORT.HTML</span><span>FINDINGS.JSON</span><span>ENVELOPE.YAML</span></div>
         </div>
       </div>
@@ -123,7 +123,7 @@
 
     <section class="acq-section portfolio-section" id="studio" aria-labelledby="studio-title">
       <div class="acq-shell">
-        <div class="studio-heading" data-reveal><p class="section-code">05 / GHOSTFRAME STUDIOS</p><div><p class="signal-label">Independent, veteran-led, proof-first</p><h2 id="studio-title">One studio. A focused body of technical work.</h2><p>GhostFrame Studios builds security systems, interactive incident simulations, and specialized creative tools. GhostGate is the flagship product and private-pilot focus.</p></div></div>
+        <div class="studio-heading" data-reveal><p class="section-code">05 / GHOSTFRAME STUDIOS</p><div><p class="signal-label">Independent, veteran-led, proof-first</p><h2 id="studio-title">One studio. A focused body of technical work.</h2><p>GhostFrame Studios builds security systems, interactive incident simulations, and specialized creative tools. GhostGate is the flagship product and private-pilot focus.</p><div class="founder-note"><strong>Built by a U.S. Army veteran and cybersecurity professional.</strong><p>GhostFrame Studios develops evidence-first security systems focused on agent behavior, operational risk, and controlled validation.</p><a href="https://www.linkedin.com/in/alton-klick-324883420/" target="_blank" rel="noopener noreferrer">Founder profile <span aria-hidden="true">↗</span></a></div></div></div>
         <div class="product-index" data-reveal>
           <a href="/ghostgate/"><span>01 / FLAGSHIP</span><div><h3>GhostGate</h3><p>AI-agent crash testing and behavioral evidence.</p></div><em>PRIVATE PILOT ↗</em></a>
           <a href="/proofline/"><span>02 / PRODUCT</span><div><h3>Proofline</h3><p>Cyber-extortion claim and evidence verification.</p></div><em>EXPLORE ↗</em></a>
@@ -134,7 +134,7 @@
     </section>
 
     <section class="acq-cta" aria-labelledby="cta-title">
-      <div class="acq-shell cta-frame" data-reveal><p class="signal-label">GhostGate / Limited private pilots</p><h2 id="cta-title">Bring the agent. We’ll bring the hostile environment and the evidence.</h2><p>Tell us what your agent can access, where it is in deployment, and what your team needs to evaluate.</p><a class="acq-button primary" href="/ghostgate/#pilot">Request a Private Pilot <span aria-hidden="true">↗</span></a></div>
+      <div class="acq-shell cta-frame" data-reveal><p class="signal-label">GhostGate / Limited private pilots</p><h2 id="cta-title">Bring the agent. We’ll bring the hostile environment and the evidence.</h2><p>Tell us what your agent can access, where it is in deployment, and what your team needs to evaluate.</p><div class="acq-actions"><a class="acq-button primary" href="/ghostgate/#pilot">Request a Private Pilot <span aria-hidden="true">↗</span></a><a class="acq-button secondary" href="/ghostgate/evidence/">View Sample Evidence <span aria-hidden="true">→</span></a></div></div>
     </section>
   </main>
 

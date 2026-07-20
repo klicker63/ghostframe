@@ -36,7 +36,7 @@
         </div>
         <div class="gate-summary" data-reveal>
           <p>GhostGate is a crash-test and evidence platform for AI agents. It runs agents through controlled hostile scenarios, records their behavior, identifies unsafe tool use and permission failures, and produces an evidence package for production-readiness review.</p>
-          <div class="acq-actions"><a class="acq-button primary" href="#pilot">Request a Private Pilot <span aria-hidden="true">↗</span></a><a class="acq-button secondary" href="#process">See How It Works <span aria-hidden="true">↓</span></a></div>
+          <div class="acq-actions"><a class="acq-button primary" href="#pilot">Request a Private Pilot <span aria-hidden="true">↗</span></a><a class="acq-button secondary" href="/ghostgate/evidence/">View Sample Evidence <span aria-hidden="true">→</span></a></div>
         </div>
         <div class="boundary-visual" data-reveal aria-label="Illustrative permission boundary map">
           <div class="boundary-label"><span>PERMISSION BOUNDARY MAP</span><small>ILLUSTRATIVE SYSTEM VIEW</small></div>
@@ -97,17 +97,17 @@
         <div class="section-intro" data-reveal><p class="section-code">04 / EVIDENCE OUTPUT</p><div><p class="signal-label">Readable for decision-makers. Inspectable for technical teams.</p><h2 id="gate-evidence-title">The evaluation ends with artifacts your team can take away.</h2></div></div>
         <div class="evidence-workbench" data-reveal>
           <div class="trust-panel">
-            <div class="trust-top"><span>AGENT TRUST REPORT</span><small>ILLUSTRATIVE STRUCTURE</small></div>
-            <div class="trust-verdict"><span>TRUST VERDICT</span><strong>CONDITIONAL</strong><p>High-impact boundary failure observed under poisoned context.</p></div>
-            <div class="finding-summary"><span>FINDING / GG-004</span><h3>Blocked export retried through a secondary tool.</h3><p>The behavior record connects the initial tool proposal, policy decision, alternate path, and final outcome.</p></div>
-            <div class="timeline-mini"><i></i><i></i><i></i><i></i><i></i><span>INGEST</span><span>PROPOSE</span><span>BLOCK</span><span>RETRY</span><span>RECORD</span></div>
+            <div class="trust-top"><span>AGENT TRUST REPORT</span><small>SANITIZED APPROVED BASELINE</small></div>
+            <div class="trust-verdict"><span>BASELINE RESULT</span><strong>APPROVED</strong><p>10 of 10 simulated scenarios passed with risk score 0.</p></div>
+            <div class="finding-summary"><span>SAMPLE / GG-PUBLIC-GH-SAFE-001</span><h3>GitHub Sandbox Baseline recorded 36 attempted actions and 0 findings.</h3><p>This dry-run used a deterministic safe agent in a mock GitHub environment. No real GitHub API calls were made. Human review is required.</p></div>
+            <div class="timeline-mini"><i></i><i></i><i></i><i></i><i></i><span>START</span><span>READ</span><span>POLICY</span><span>COMPLETE</span><span>RECORD</span></div>
           </div>
           <div class="bundle-tree">
             <div class="tree-head"><span>EVIDENCE_BUNDLE/</span><small>PORTABLE EXPORT</small></div>
             <ul><li><b>01</b>agent-trust-report.html <em>PRINTABLE</em></li><li><b>02</b>agent-trust-report.json <em>STRUCTURED</em></li><li><b>03</b>permission-envelope.json <em>POLICY</em></li><li><b>04</b>permission-envelope.yaml <em>POLICY</em></li><li><b>05</b>behavior-timeline.json <em>TRACE</em></li><li><b>06</b>findings.json <em>IMPACT</em></li><li><b>07</b>scenario-results.json <em>RESULTS</em></li><li><b>08</b>evaluation-metadata.json <em>CONTEXT</em></li><li><b>09</b>manifest + readme <em>INDEX</em></li></ul>
           </div>
         </div>
-        <p class="evidence-note" data-reveal>GhostGate produces Agent Trust Reports, Permission Envelopes, behavior timelines, findings and impact summaries, scenario results, evaluation metadata, JSON reports, printable HTML reports, evidence bundles, and permission policies in JSON and YAML. These outputs document a controlled evaluation; they are not a certification or guarantee of complete agent safety.</p>
+        <p class="evidence-note" data-reveal>GhostGate produces Agent Trust Reports, Permission Envelopes, behavior timelines, findings and impact summaries, scenario results, evaluation metadata, JSON reports, printable HTML reports, evidence bundles, and permission policies in JSON and YAML. These outputs document a controlled evaluation; they are not a certification or guarantee of complete agent safety. <a class="text-link" href="/ghostgate/evidence/">Inspect the sanitized sample evidence <span aria-hidden="true">→</span></a></p>
       </div>
     </section>
 
@@ -151,20 +151,24 @@
           <p class="section-code">08 / PRIVATE PILOT</p><p class="signal-label">A scoped evaluation built around your agent</p><h2 id="pilot-title">Request a GhostGate Private Pilot.</h2>
           <p>A pilot starts with what the agent can access and what your team needs to learn. Scope is confirmed before any evaluation work begins.</p>
           <ol class="pilot-includes"><li>Agent connection or adapter setup</li><li>Relevant scenario-pack selection</li><li>Controlled evaluation runs</li><li>Behavior and findings review</li><li>Agent Trust Report</li><li>Permission Envelope</li><li>Downloadable evidence bundle</li><li>Prioritized remediation guidance</li></ol>
-          <p class="pilot-small">Submitting this form opens a pre-addressed email in your mail application. It does not send data to a third-party form service.</p>
+          <p class="pilot-small" id="pilot-guidance">Submissions are delivered by the configured email provider and are not stored in a website database. Do not submit passwords, API keys, customer records, proprietary prompts, or other sensitive data.</p>
         </div>
-        <form class="pilot-form" data-pilot-form novalidate data-reveal>
+        <form class="pilot-form" data-pilot-form novalidate data-reveal aria-describedby="pilot-guidance">
           <div class="form-head"><span>PILOT QUALIFICATION / 01</span><small>USEFUL SCOPE ONLY</small></div>
-          <div class="field-row"><label for="pilot-name">Name</label><input id="pilot-name" name="name" autocomplete="name" required></div>
-          <div class="field-row"><label for="pilot-email">Work email</label><input id="pilot-email" name="email" type="email" autocomplete="email" required></div>
-          <div class="field-row"><label for="pilot-company">Company</label><input id="pilot-company" name="company" autocomplete="organization" required></div>
-          <div class="field-row"><label for="pilot-role">Role</label><input id="pilot-role" name="role" autocomplete="organization-title" required></div>
-          <div class="field-row"><label for="pilot-access">What can the agent access?</label><textarea id="pilot-access" name="access" rows="3" placeholder="Email, GitHub, browser, internal APIs, files…" required></textarea></div>
+          <div class="field-row"><label for="pilot-name">Name</label><input id="pilot-name" name="name" autocomplete="name" maxlength="100" required></div>
+          <div class="field-row"><label for="pilot-email">Work email</label><input id="pilot-email" name="email" type="email" autocomplete="email" maxlength="254" required></div>
+          <div class="field-row"><label for="pilot-company">Company</label><input id="pilot-company" name="company" autocomplete="organization" maxlength="160" required></div>
+          <div class="field-row"><label for="pilot-role">Role</label><input id="pilot-role" name="role" autocomplete="organization-title" maxlength="120" required></div>
+          <div class="field-row"><label for="pilot-agent-product">Agent or product</label><input id="pilot-agent-product" name="agentProduct" autocomplete="off" maxlength="200" required></div>
+          <div class="field-row"><label for="pilot-access">What can the agent access?</label><textarea id="pilot-access" name="access" rows="3" maxlength="3000" placeholder="Email, GitHub, browser, internal APIs, files…" required></textarea></div>
           <div class="field-row"><label for="pilot-stage">Current deployment stage</label><select id="pilot-stage" name="stage" required><option value="">Select a stage</option><option>Prototype</option><option>Internal testing</option><option>Enterprise pilot</option><option>Limited production</option><option>Production</option></select></div>
-          <div class="field-row"><label for="pilot-goal">What do you want evaluated?</label><textarea id="pilot-goal" name="goal" rows="4" required></textarea></div>
+          <div class="field-row"><label for="pilot-outcome">Desired outcome</label><textarea id="pilot-outcome" name="outcome" rows="4" maxlength="3000" required></textarea></div>
+          <div class="field-row"><label for="pilot-message">Additional context <small>(optional)</small></label><textarea id="pilot-message" name="message" rows="3" maxlength="4000"></textarea></div>
+          <div class="honeypot-field" aria-hidden="true"><label for="pilot-website">Website</label><input id="pilot-website" name="website" maxlength="300" tabindex="-1" autocomplete="off"></div>
+          <label class="consent-row" for="pilot-consent"><input id="pilot-consent" name="consent" type="checkbox" value="true" required><span>I confirm this request contains no passwords, API keys, customer data, proprietary prompts, or other sensitive information.</span></label>
           <p class="form-status" data-form-status aria-live="polite"></p>
-          <button class="acq-button primary submit-button" type="submit">Prepare Pilot Request <span aria-hidden="true">↗</span></button>
-          <p class="form-fallback">Prefer direct email? <a href="mailto:klicker01@gmail.com?subject=GhostGate%20Private%20Pilot%20Inquiry">Contact GhostFrame Studios.</a></p>
+          <button class="acq-button primary submit-button" type="submit" data-submit-button>Send Pilot Request <span aria-hidden="true">↗</span></button>
+          <p class="form-fallback">Prefer direct email or having trouble? <a data-pilot-fallback href="mailto:klicker01@gmail.com?subject=GhostGate%20Private%20Pilot%20Inquiry">Contact GhostFrame Studios.</a></p>
         </form>
       </div>
     </section>

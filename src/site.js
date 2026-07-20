@@ -73,9 +73,11 @@ document.querySelectorAll('.build-row button').forEach(button => {
 
 const pilotForm = document.querySelector('[data-pilot-form]');
 
-pilotForm?.addEventListener('submit', event => {
+pilotForm?.addEventListener('submit', async event => {
   event.preventDefault();
   const status = pilotForm.querySelector('[data-form-status]');
+  const submitButton = pilotForm.querySelector('[data-submit-button]');
+  const fallback = pilotForm.querySelector('[data-pilot-fallback]');
   const controls = [...pilotForm.querySelectorAll('input, textarea, select')];
   const invalid = controls.filter(control => !control.checkValidity());
 
@@ -85,12 +87,41 @@ pilotForm?.addEventListener('submit', event => {
   });
 
   if (invalid.length) {
-    status.textContent = 'Complete the required fields before preparing your pilot request.';
+    status.dataset.state = 'error';
+    status.textContent = 'Complete the required fields and confirm the sensitive-data notice.';
     invalid[0].focus();
     return;
   }
 
-  status.textContent = 'Opening your email application with the pilot details prepared.';
   const details = Object.fromEntries(new FormData(pilotForm));
-  window.location.href = buildPilotMailto(details);
+  details.consent = details.consent === 'true';
+  fallback.href = buildPilotMailto(details);
+  submitButton.disabled = true;
+  submitButton.setAttribute('aria-busy', 'true');
+  status.dataset.state = 'pending';
+  status.textContent = 'Sending your private-pilot request…';
+
+  try {
+    const response = await fetch('/api/pilot-request', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(details),
+    });
+    const result = await response.json().catch(() => ({}));
+
+    if (!response.ok) {
+      throw new Error(result.error || 'Online delivery failed.');
+    }
+
+    pilotForm.reset();
+    controls.forEach(control => control.removeAttribute('aria-invalid'));
+    status.dataset.state = 'success';
+    status.textContent = result.message || 'Your private-pilot request was sent to GhostFrame Studios.';
+  } catch (error) {
+    status.dataset.state = 'error';
+    status.textContent = error.message + ' Use the direct email link below to send the prepared request.';
+  } finally {
+    submitButton.disabled = false;
+    submitButton.removeAttribute('aria-busy');
+  }
 });
