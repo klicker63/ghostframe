@@ -1,7 +1,9 @@
 import './styles.css';
 import './refine.css';
 import './acquisition.css';
-import { buildPilotMailto } from './pilot-mail.js';
+import './commercial.css';
+import './commercial-fixes.css';
+import { buildReviewMailto } from './config.js';
 
 const menuButton = document.querySelector('[data-menu-button]');
 const nav = document.querySelector('[data-nav]');
@@ -21,6 +23,11 @@ function setMenu(open) {
 menuButton?.addEventListener('click', () => setMenu(menuButton.getAttribute('aria-expanded') !== 'true'));
 nav?.addEventListener('click', event => event.target.closest('a') && setMenu(false));
 window.addEventListener('keydown', event => event.key === 'Escape' && setMenu(false));
+window.addEventListener('resize', () => window.innerWidth > 980 && setMenu(false));
+
+document.querySelectorAll('[data-review-link]').forEach(link => {
+  link.setAttribute('href', buildReviewMailto());
+});
 
 document.querySelectorAll('[data-year]').forEach(node => {
   node.textContent = new Date().getFullYear();
@@ -36,12 +43,9 @@ if ('IntersectionObserver' in window && !reducedMotion) {
       observer.unobserve(entry.target);
     });
   }, { threshold: 0.08 });
-
   document.querySelectorAll('[data-reveal]').forEach(node => observer.observe(node));
 } else {
-  document.querySelectorAll('[data-reveal]').forEach(node => {
-    node.dataset.visible = 'true';
-  });
+  document.querySelectorAll('[data-reveal]').forEach(node => { node.dataset.visible = 'true'; });
 }
 
 if (!reducedMotion && window.matchMedia?.('(pointer: fine)').matches) {
@@ -69,59 +73,4 @@ document.querySelectorAll('.build-row button').forEach(button => {
     row.dataset.open = String(willOpen);
     button.setAttribute('aria-expanded', String(willOpen));
   });
-});
-
-const pilotForm = document.querySelector('[data-pilot-form]');
-
-pilotForm?.addEventListener('submit', async event => {
-  event.preventDefault();
-  const status = pilotForm.querySelector('[data-form-status]');
-  const submitButton = pilotForm.querySelector('[data-submit-button]');
-  const fallback = pilotForm.querySelector('[data-pilot-fallback]');
-  const controls = [...pilotForm.querySelectorAll('input, textarea, select')];
-  const invalid = controls.filter(control => !control.checkValidity());
-
-  controls.forEach(control => {
-    if (control.checkValidity()) control.removeAttribute('aria-invalid');
-    else control.setAttribute('aria-invalid', 'true');
-  });
-
-  if (invalid.length) {
-    status.dataset.state = 'error';
-    status.textContent = 'Complete the required fields and confirm the sensitive-data notice.';
-    invalid[0].focus();
-    return;
-  }
-
-  const details = Object.fromEntries(new FormData(pilotForm));
-  details.consent = details.consent === 'true';
-  fallback.href = buildPilotMailto(details);
-  submitButton.disabled = true;
-  submitButton.setAttribute('aria-busy', 'true');
-  status.dataset.state = 'pending';
-  status.textContent = 'Sending your private-pilot request…';
-
-  try {
-    const response = await fetch('/api/pilot-request', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(details),
-    });
-    const result = await response.json().catch(() => ({}));
-
-    if (!response.ok) {
-      throw new Error(result.error || 'Online delivery failed.');
-    }
-
-    pilotForm.reset();
-    controls.forEach(control => control.removeAttribute('aria-invalid'));
-    status.dataset.state = 'success';
-    status.textContent = result.message || 'Your private-pilot request was sent to GhostFrame Studios.';
-  } catch (error) {
-    status.dataset.state = 'error';
-    status.textContent = error.message + ' Use the direct email link below to send the prepared request.';
-  } finally {
-    submitButton.disabled = false;
-    submitButton.removeAttribute('aria-busy');
-  }
 });

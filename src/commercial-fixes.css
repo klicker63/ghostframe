@@ -1,0 +1,17 @@
+.commercial-page .gg-button-primary {
+  border-color: var(--gg-text);
+  background: var(--gg-text);
+  color: var(--gg-bg);
+}
+
+.commercial-page .gg-button-primary:hover {
+  border-color: var(--gg-teal);
+  background: var(--gg-teal);
+  color: var(--gg-bg);
+}
+
+@media (max-width: 720px) {
+  .commercial-page h1 {
+    font-size: clamp(2.7rem, 11vw, 4rem);
+  }
+}
