@@ -1,4 +1,4 @@
-export const PILOT_EMAIL = 'klicker01@gmail.com';
+export const PILOT_EMAIL = 'hello@ghostframestudios.com';
 
 const clean = value => String(value ?? '').trim();
 

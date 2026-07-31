@@ -94,7 +94,7 @@ test('studio retains every existing project while keeping GhostGate primary', as
 test('review CTA uses one centralized email and approved prepared content', async () => {
   const [script, contact] = await Promise.all([load('src/site.js'), load('contact/index.html')]);
   const mailto = buildReviewMailto();
-  assert.equal(CONTACT_EMAIL, 'klicker01@gmail.com');
+  assert.equal(CONTACT_EMAIL, 'hello@ghostframestudios.com');
   assert.equal(REVIEW_SUBJECT, 'GhostGate Technical Review Request');
   assert.match(REVIEW_BODY, /Company:\nRole:\nAgent use case:/);
   assert.ok(mailto.startsWith(`mailto:${CONTACT_EMAIL}?subject=`));
