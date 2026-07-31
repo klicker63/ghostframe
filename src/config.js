@@ -1,5 +1,5 @@
 export const SITE_URL = 'https://www.ghostframestudios.com';
-export const CONTACT_EMAIL = 'klicker01@gmail.com';
+export const CONTACT_EMAIL = 'hello@ghostframestudios.com';
 export const REVIEW_SUBJECT = 'GhostGate Technical Review Request';
 export const REVIEW_BODY = `Hello,
 
