@@ -3,7 +3,10 @@ import './refine.css';
 import './acquisition.css';
 import './commercial.css';
 import './commercial-fixes.css';
+import './portfolio.css';
 import { buildReviewMailto } from './config.js';
+
+document.documentElement.classList.add('js');
 
 const menuButton = document.querySelector('[data-menu-button]');
 const nav = document.querySelector('[data-nav]');

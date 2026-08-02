@@ -23,30 +23,40 @@ test('every commercial route has production metadata and shared runtime', async 
     assert.match(html, new RegExp(`rel="canonical" href="${canonical.replaceAll('.', '\\.')}`));
     assert.match(html, new RegExp(`property="og:url" content="${canonical.replaceAll('.', '\\.')}`));
     assert.match(html, /name="twitter:card" content="summary_large_image"/);
-    assert.match(html, /property="og:image" content="https:\/\/www\.ghostframestudios\.com\/og\.png"/);
+    const ogImage = route === '/' ? 'og-security-portfolio.png' : 'og.png';
+    assert.match(html, new RegExp(`property="og:image" content="https:\\/\\/www\\.ghostframestudios\\.com\\/${ogImage.replace('.', '\\.')}"`));
     assert.match(html, /src="\/src\/site\.js"/);
     assert.match(html, /href="\/favicon\.svg"/);
     assert.doesNotMatch(html, /ghostframe-inky\.vercel\.app/);
   }
 });
 
-test('homepage uses approved GhostGate positioning and release workflow', async () => {
+test('homepage presents the GhostFrame portfolio and connected security spine', async () => {
   const html = await load('index.html');
-  assert.match(html, /GHOSTFRAME PRESENTS/i);
-  assert.match(html, /Pre-Production Trust Infrastructure for AI Agents/);
-  assert.match(html, /Decide which exact AI-agent versions are ready for production, under what conditions, and based on what evidence\./);
-  assert.match(html, /Request a 20-Minute Technical Review/);
-  assert.match(html, /View Technical Proof/);
-  for (const stage of ['Agent Development', 'Exact Version Registration', 'Qualification', 'Security and Human Review', 'Signed Deployment Attestation', 'Production Admission', 'Monitoring, Containment, and Re-entry']) {
+  assert.match(html, /GhostFrame \| Evidence-Driven Security Systems/);
+  assert.match(html, /Security decisions cannot rely on <span>assumptions\.<\/span>/);
+  assert.match(html, /GhostFrame builds evidence-driven security systems for autonomous agents, cyber-extortion claims, and contaminated AI memory\./);
+  assert.match(html, /The GhostFrame Security Spine/);
+  for (const stage of ['Before operation', 'During an incident', 'After contamination']) {
     assert.match(html, new RegExp(stage));
   }
+  for (const product of ['GhostGate', 'Proofline', 'Recall']) assert.match(html, new RegExp(product));
+  assert.match(html, /href="\/ghostgate\/"/);
+  assert.match(html, /href="\/proofline\/"/);
+  assert.match(html, /href="#recall"/);
 });
 
-test('homepage publishes every required capability in buyer context', async () => {
+test('homepage communicates evidence principles, limits, pilot terms, and contact path', async () => {
   const html = await load('index.html');
-  for (const capability of ['Immutable version registration', 'Exact manifests and configuration binding', 'Behavior DNA', 'mutation detection', 'drift detection', 'RiskChain causal analysis', 'blast-path analysis', 'graduated immune response', 'approval-bound enforcement', 'controlled re-entry', 'recurrence memory', 'failback', 'Fleet qualification', 'Cross-agent correlation', 'shared-identity analysis', 'shared-dependency analysis', 'outbreak-cluster analysis', 'Human release decisions', 'conditional qualification controls', 'Ed25519 deployment attestations', 'Material-change invalidation', 'Sanitized evidence archives']) {
-    assert.match(html, new RegExp(capability, 'i'));
-  }
+  for (const principle of ['Evidence first', 'Human-bound action', 'Controlled proof', 'Honest limitations']) assert.match(html, new RegExp(principle));
+  assert.match(html, /Recall is currently offered as a controlled research preview\./);
+  assert.match(html, /Production remediation remains human-authorized/);
+  assert.match(html, /8–10 weeks/);
+  assert.match(html, /\$72,500/);
+  assert.match(html, /\$50,000/);
+  assert.match(html, /\/commercial\/ghostframe-integrated-pilot\.html/);
+  assert.match(html, /\/commercial\/ghostframe-integrated-pilot-deck\.html/);
+  assert.match(html, /mailto:hello@ghostframestudios\.com\?subject=GhostFrame%20Scoped%20Fit%20Assessment/);
 });
 
 test('proof page separates and labels controlled, deterministic, synthetic, and cryptographic evidence', async () => {
@@ -92,7 +102,7 @@ test('studio retains every existing project while keeping GhostGate primary', as
 });
 
 test('review CTA uses one centralized email and approved prepared content', async () => {
-  const [script, contact] = await Promise.all([load('src/site.js'), load('contact/index.html')]);
+  const [script, contact, home] = await Promise.all([load('src/site.js'), load('contact/index.html'), load('index.html')]);
   const mailto = buildReviewMailto();
   assert.equal(CONTACT_EMAIL, 'hello@ghostframestudios.com');
   assert.equal(REVIEW_SUBJECT, 'GhostGate Technical Review Request');
@@ -101,11 +111,13 @@ test('review CTA uses one centralized email and approved prepared content', asyn
   assert.match(script, /buildReviewMailto/);
   assert.match(contact, /data-review-link/);
   assert.match(contact, /No submission form/);
-  assert.equal((await Promise.all(commercialRoutes.map(([file]) => load(file)))).join('').includes(CONTACT_EMAIL), false);
+  assert.match(home, /hello@ghostframestudios\.com/);
+  assert.match(home, /GhostFrame%20Scoped%20Fit%20Assessment/);
 });
 
 test('navigation runtime supports mobile closing, Escape, focus, and reduced motion', async () => {
-  const [script, css] = await Promise.all([load('src/site.js'), load('src/commercial.css')]);
+  const [script, commercialCss, portfolioCss] = await Promise.all([load('src/site.js'), load('src/commercial.css'), load('src/portfolio.css')]);
+  const css = commercialCss + portfolioCss;
   assert.match(script, /menuButton\?\.addEventListener\('click'/);
   assert.match(script, /closest\('a'\).*setMenu\(false\)/);
   assert.match(script, /Escape/);
@@ -113,6 +125,7 @@ test('navigation runtime supports mobile closing, Escape, focus, and reduced mot
   assert.match(css, /:focus-visible/);
   assert.match(css, /prefers-reduced-motion/);
   assert.match(css, /overflow-x: clip/);
+  assert.match(css, /evidence-pulse/);
 });
 
 test('SEO support files use the canonical production domain', async () => {
@@ -122,6 +135,22 @@ test('SEO support files use the canonical production domain', async () => {
     const url = route === '/' ? `${SITE_URL}/` : `${SITE_URL}${route}`;
     assert.ok(sitemap.includes(`<loc>${url}</loc>`));
   }
+});
+
+test('integrated pilot assets retain real contact details and print-safe page structures', async () => {
+  const [sheet, sheetCss, deck, deckCss] = await Promise.all([
+    load('public/commercial/ghostframe-integrated-pilot.html'),
+    load('public/commercial/ghostframe-integrated-pilot.css'),
+    load('public/commercial/ghostframe-integrated-pilot-deck.html'),
+    load('public/commercial/ghostframe-integrated-pilot-deck.css'),
+  ]);
+  const files = sheet + sheetCss + deck + deckCss;
+  assert.match(files, /hello@ghostframestudios\.com/);
+  assert.doesNotMatch(files, /ghostframe\.example|contact@|\[Name\]|\[Title\]/i);
+  assert.match(sheet, /GhostFrame%20Integrated%20Security%20Pilot/);
+  assert.equal((deck.match(/class="slide /g) ?? []).length, 6);
+  assert.match(sheetCss + deckCss, /@media print/);
+  assert.match(sheetCss + deckCss, /@page/);
 });
 
 test('public copy avoids unsupported commercial claims and private paths', async () => {
