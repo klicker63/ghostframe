@@ -6,8 +6,9 @@ Static Vite multi-page site for GhostGate and the GhostFrame Studios portfolio. 
 
 - `/` — GhostGate commercial homepage
 - `/ghostgate/` — detailed product and qualification workflow
+- `/ghostgate/release-check/` — $5,000 fixed-scope assessment and secure scope-review form
 - `/proof/` — controlled, deterministic, synthetic, and cryptographic proof
-- `/pilot/` — six-week paid qualification pilot
+- `/pilot/` — $32,000 six-week private qualification pilot
 - `/security/` — security model, data handling, human authority, and limitations
 - `/studio/` — GhostFrame parent-studio portfolio
 - `/contact/` — prepared direct-email technical review request
@@ -23,11 +24,17 @@ npm install
 npm run dev
 ~~~
 
-Vite serves the public pages and downloadable evidence. The existing Vercel Function at `POST /api/pilot-request` remains in the repository for backward compatibility, but the commercial GhostGate routes use a direct email CTA and do not expose a web form.
+Vite serves the public pages and downloadable evidence. The Release Check request form submits JSON to the Vercel Function at `POST /api/release-check-request`. The existing `POST /api/pilot-request` function remains for backward compatibility.
 
-## Contact configuration
+## Form configuration
 
-The temporary review email, subject, and prepared message body are centralized in `src/config.js`. Replace `CONTACT_EMAIL` there when a branded mailbox becomes available.
+Release Check delivery requires:
+
+- `RESEND_API_KEY`
+- `RELEASE_CHECK_TO_EMAIL`
+- `RELEASE_CHECK_FROM_EMAIL`
+
+The endpoint validates and sanitizes bounded fields, does not log submissions, uses no-store responses, and does not write to an application database. If delivery is unavailable, the page exposes a safe direct-email fallback. The separate prepared technical-review email remains centralized in `src/config.js`.
 
 ## Verification
 
