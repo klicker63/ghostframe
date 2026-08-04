@@ -9,6 +9,7 @@ const load = file => readFile(path.join(root, file), 'utf8');
 const commercialRoutes = [
   ['index.html', '/'],
   ['ghostgate/index.html', '/ghostgate/'],
+  ['ghostgate/release-check/index.html', '/ghostgate/release-check/'],
   ['proof/index.html', '/proof/'],
   ['pilot/index.html', '/pilot/'],
   ['security/index.html', '/security/'],
@@ -23,7 +24,7 @@ test('every commercial route has production metadata and shared runtime', async 
     assert.match(html, new RegExp(`rel="canonical" href="${canonical.replaceAll('.', '\\.')}`));
     assert.match(html, new RegExp(`property="og:url" content="${canonical.replaceAll('.', '\\.')}`));
     assert.match(html, /name="twitter:card" content="summary_large_image"/);
-    const ogImage = route === '/' ? 'og-security-portfolio.png' : 'og.png';
+    const ogImage = route === '/' ? 'og-security-portfolio.png' : route === '/ghostgate/release-check/' ? 'og-release-check.png' : 'og.png';
     assert.match(html, new RegExp(`property="og:image" content="https:\\/\\/www\\.ghostframestudios\\.com\\/${ogImage.replace('.', '\\.')}"`));
     assert.match(html, /src="\/src\/site\.js"/);
     assert.match(html, /href="\/favicon\.svg"/);
@@ -87,6 +88,63 @@ test('pilot page publishes the standard paid scope and commercial terms', async 
   assert.match(html, /50 percent at kickoff and 50 percent at delivery/);
   assert.match(html, /additional agents, versions, scenarios, integrations, and workshops require a scope change/i);
   assert.doesNotMatch(html, /\$22,000/);
+});
+
+test('Release Check route publishes the fixed price, scope, delivery gate, and payment terms', async () => {
+  const html = await load('ghostgate/release-check/index.html');
+  assert.match(html, /Independently verify your AI agent before release\./);
+  assert.match(html, /\$5,000/);
+  assert.match(html, /50% at kickoff \/ 50% at delivery/);
+  assert.match(html, /Seven business days/);
+  assert.match(html, /delivery target starts only after GhostFrame confirms intake readiness/i);
+  for (const scope of ['One AI agent', 'One exact agent version or immutable build', 'One test environment or supported adapter', 'One tool and permission configuration', 'One policy baseline', 'Up to 20 agreed']) {
+    assert.match(html, new RegExp(scope));
+  }
+  assert.doesNotMatch(html, /\$5,000[^\n]{0,80}(?:per month|starting at)/i);
+});
+
+test('Release Check route publishes exact verdict wording and version-bound limitations', async () => {
+  const html = await load('ghostgate/release-check/index.html');
+  for (const wording of [
+    'The tested version completed the agreed assessment without release-blocking findings under the tested configuration.',
+    'The version may proceed only with documented restrictions, approvals, or Permission Envelope controls.',
+    'The tested version demonstrated behavior or access paths that should prevent release until remediated and retested.',
+  ]) assert.ok(html.includes(wording));
+  assert.match(html, /a verdict does not transfer to a materially changed version or configuration/i);
+  for (const change of ['model', 'system instructions', 'tool access', 'permissions', 'agent code', 'orchestration', 'retrieval sources', 'memory behavior', 'policy baseline', 'deployment configuration']) {
+    assert.match(html, new RegExp(change, 'i'));
+  }
+  assert.match(html, /not a guarantee of present or future safety/i);
+  assert.match(html, /No guarantee of safety, compliance certification, or legal opinion/);
+  assert.match(html, /Human review remains required/);
+});
+
+test('Release Check form exposes every bounded intake field and accessible status states', async () => {
+  const html = await load('ghostgate/release-check/index.html');
+  for (const name of ['name', 'email', 'company', 'companyWebsite', 'agentProduct', 'agentPurpose', 'stage', 'tools', 'sandbox', 'desiredDate', 'reason', 'additionalContext', 'website', 'consent']) {
+    assert.match(html, new RegExp(`name="${name}"`));
+  }
+  assert.match(html, /data-release-check-form/);
+  assert.match(html, /action="\/api\/release-check-request"/);
+  assert.match(html, /data-form-status role="alert" tabindex="-1"/);
+  assert.match(html, /data-form-success tabindex="-1"/);
+  assert.match(html, /Do not submit secrets/);
+  assert.match(html, /does not create a binding engagement or promise acceptance/i);
+  assert.match(html, /GhostFrame reviews the submitted scope, confirms whether the agent can be assessed under the fixed package, and responds with intake requirements and next steps\./);
+});
+
+test('GhostGate commercial pages expose the Release Check, private pilot, and evidence hierarchy', async () => {
+  const files = ['ghostgate/index.html', 'proof/index.html', 'pilot/index.html', 'contact/index.html', 'ghostgate/evidence/index.html'];
+  for (const file of files) {
+    const html = await load(file);
+    assert.match(html, /href="\/ghostgate\/release-check\//, file);
+    assert.match(html, /href="\/pilot\//, file);
+    assert.match(html, /href="\/ghostgate\/evidence\//, file);
+  }
+
+  const [pilot, evidence] = await Promise.all([load('pilot/index.html'), load('ghostgate/evidence/index.html')]);
+  assert.match(pilot, /\$32,000 USD/);
+  assert.match(evidence, /data-evidence-root/);
 });
 
 test('security page publishes honest human-authority and product boundaries', async () => {
@@ -158,9 +216,11 @@ test('public copy avoids unsupported commercial claims and private paths', async
   const copy = files.join('\n');
   assert.doesNotMatch(copy, /trusted by|customer logo|testimonial|fortune 500|military-grade|unhackable|game-changing|revolutionary|AI antivirus|proven at enterprise production scale/i);
   assert.doesNotMatch(copy, /[A-Z]:\\|ghostframe-inky\.vercel\.app/);
+  assert.doesNotMatch(copy, /AgentAV|Agent AB/i);
+  assert.doesNotMatch(copy, /GhostGate (?:guarantees safety|provides compliance certification|certifies compliance)/i);
 });
 
-test('Vercel security headers and legacy server endpoint remain configured', async () => {
+test('Vercel security headers and server endpoints remain configured', async () => {
   const config = JSON.parse(await load('vercel.json'));
   const headers = Object.fromEntries(config.headers[0].headers.map(item => [item.key, item.value]));
   assert.match(headers['Content-Security-Policy'], /default-src 'self'/);
@@ -170,4 +230,5 @@ test('Vercel security headers and legacy server endpoint remain configured', asy
   assert.equal(headers['X-Frame-Options'], 'DENY');
   assert.equal(headers['X-Content-Type-Options'], 'nosniff');
   assert.equal(typeof (await import('../api/pilot-request.js')).POST, 'function');
+  assert.equal(typeof (await import('../api/release-check-request.js')).POST, 'function');
 });
