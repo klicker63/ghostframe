@@ -10,6 +10,7 @@ const commercialRoutes = [
   ['index.html', '/'],
   ['ghostgate/index.html', '/ghostgate/'],
   ['ghostgate/release-check/index.html', '/ghostgate/release-check/'],
+  ['tools/agent-release-readiness/index.html', '/tools/agent-release-readiness/'],
   ['proof/index.html', '/proof/'],
   ['pilot/index.html', '/pilot/'],
   ['security/index.html', '/security/'],
@@ -24,7 +25,7 @@ test('every commercial route has production metadata and shared runtime', async 
     assert.match(html, new RegExp(`rel="canonical" href="${canonical.replaceAll('.', '\\.')}`));
     assert.match(html, new RegExp(`property="og:url" content="${canonical.replaceAll('.', '\\.')}`));
     assert.match(html, /name="twitter:card" content="summary_large_image"/);
-    const ogImage = route === '/' ? 'og-security-portfolio.png' : route === '/ghostgate/release-check/' ? 'og-release-check.png' : 'og.png';
+    const ogImage = route === '/' ? 'og-security-portfolio.png' : ['/ghostgate/release-check/', '/tools/agent-release-readiness/'].includes(route) ? 'og-release-check.png' : 'og.png';
     assert.match(html, new RegExp(`property="og:image" content="https:\\/\\/www\\.ghostframestudios\\.com\\/${ogImage.replace('.', '\\.')}"`));
     assert.match(html, /src="\/src\/site\.js"/);
     assert.match(html, /href="\/favicon\.svg"/);
@@ -231,4 +232,5 @@ test('Vercel security headers and server endpoints remain configured', async () 
   assert.equal(headers['X-Content-Type-Options'], 'nosniff');
   assert.equal(typeof (await import('../api/pilot-request.js')).POST, 'function');
   assert.equal(typeof (await import('../api/release-check-request.js')).POST, 'function');
+  assert.equal(typeof (await import('../api/readiness-lead.js')).POST, 'function');
 });

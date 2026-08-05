@@ -10,6 +10,8 @@
   --gg-teal-dark: #153c35;
   --gg-line: rgba(241, 240, 234, 0.15);
   --gg-line-strong: rgba(241, 240, 234, 0.28);
+  --gg-signal: var(--gg-teal);
+  --gg-line2: var(--gg-line-strong);
   --gg-max: 1240px;
   --gg-pad: clamp(20px, 4vw, 64px);
   min-width: 320px;
