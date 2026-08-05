@@ -25,20 +25,25 @@ Bing — Retell's Agent Versioning 2.0 now separates drafts, staging, and produc
 
 ### B — direct email
 
-**Subject:** Independent check for one Retell agent release
+**Subject:** Independent release evidence for one Retell agent version
 
 Hi Bing,
 
-Retell's Agent Versioning 2.0 makes staging-to-production promotion explicit, while voice agents can update CRM records and take consequential call actions. That makes one exact release a good fit for independent, pre-release evidence.
+Retell’s Agent Versioning 2.0 makes staging-to-production promotion explicit, while deployed voice agents can update CRM records and trigger consequential actions.
 
-GhostGate Agent Release Check covers one agent version, one tested configuration, one Permission Envelope, and up to 20 agreed scenarios. It delivers a human-reviewed Pass, Conditional Pass, or Block verdict plus version-bound evidence. The target is seven business days after intake is complete and usable test access is ready.
+GhostGate independently evaluates one exact agent version in one defined configuration against its tools, permissions, policies, and up to 20 agreed hostile or boundary scenarios.
 
-The fixed fee is $5,000: 50% at kickoff and 50% at delivery. Scope and limitations: https://www.ghostframestudios.com/ghostgate/release-check/
+The result is a human-reviewed Pass, Conditional Pass, or Block verdict, a Permission Envelope, and version-bound evidence your team or enterprise customers can review.
 
-Would you be open to a 20-minute technical-fit conversation about the next Retell release that needs qualification?
+The assessment is $5,000, with 50% at kickoff, a seven-business-day target after intake readiness, and one same-scope remediation retest.
 
-Best,  
+https://www.ghostframestudios.com/ghostgate/release-check/
+
+Would you be open to a 20-minute technical-fit conversation about a Retell release where independent qualification would be useful?
+
+Best,
 AJ
+GhostFrame Studios
 
 ### C — one useful follow-up
 
