@@ -1,4 +1,5 @@
 import './readiness.css';
+import './readiness-results-polish.css';
 import {
   ANSWER_OPTIONS,
   CAPABILITIES,
