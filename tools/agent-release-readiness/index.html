@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#070908">
+  <title>AI Agent Release Readiness Check | GhostGate</title>
+  <meta name="description" content="Assess an AI agent’s tools, permissions, approval controls, version boundaries, and release evidence. Generate a sample Permission Envelope and identify priority gaps before production.">
+  <link rel="canonical" href="https://www.ghostframestudios.com/tools/agent-release-readiness/">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.ghostframestudios.com/tools/agent-release-readiness/">
+  <meta property="og:title" content="AI Agent Release Readiness Check | GhostGate">
+  <meta property="og:description" content="Identify release-control gaps and generate a sample Permission Envelope before giving an AI agent production authority.">
+  <meta property="og:image" content="https://www.ghostframestudios.com/og-release-check.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"GhostGate Agent Release Readiness Check","url":"https://www.ghostframestudios.com/tools/agent-release-readiness/","applicationCategory":"SecurityApplication","operatingSystem":"Web","isAccessibleForFree":true,"description":"A browser-local self-assessment for AI agent release controls and Permission Envelope planning.","provider":{"@type":"Organization","name":"GhostFrame Studios","url":"https://www.ghostframestudios.com/"}}</script>
+</head>
+<body class="commercial-page readiness-page">
+  <a class="gg-skip" href="#main">Skip to content</a>
+  <header class="gg-header">
+    <a class="gg-brand" href="/ghostgate/" aria-label="GhostGate home"><span class="gg-brand-mark" aria-hidden="true"></span><span><strong>GHOSTGATE</strong><small>by GhostFrame Studios</small></span></a>
+    <nav class="gg-nav" data-nav data-open="false" aria-label="Primary navigation">
+      <a href="/ghostgate/">GhostGate</a>
+      <a aria-current="page" href="/tools/agent-release-readiness/">Readiness Tool</a>
+      <a href="/ghostgate/release-check/">Release Check</a>
+      <a href="/ghostgate/evidence/">Evidence Room</a>
+      <a class="gg-nav-cta" href="/ghostgate/release-check/" data-release-check-cta>Request Check</a>
+    </nav>
+    <button class="gg-menu" type="button" data-menu-button aria-expanded="false" aria-label="Open navigation"><span aria-hidden="true"></span></button>
+  </header>
+
+  <main id="main">
+    <section class="rr-shell rr-panel" data-panel="intro" aria-labelledby="readiness-title">
+      <div class="rr-intro-grid">
+        <div class="rr-intro-copy">
+          <p class="gg-breadcrumb"><a href="/ghostgate/">GhostGate</a> / Free release-readiness tool</p>
+          <p class="gg-kicker">Browser-local self-assessment / No login</p>
+          <h1 id="readiness-title" tabindex="-1">Know the release boundary before the agent crosses it.</h1>
+          <p class="rr-lead">Identify control gaps before giving an AI agent production tools, credentials, data, or action authority. In 15 focused questions, map the controls that support a scoped release decision and generate a sample Permission Envelope.</p>
+          <div class="gg-actions">
+            <button class="gg-button gg-button-primary" type="button" data-start-assessment>Assess an Agent</button>
+            <a class="gg-button" href="/ghostgate/release-check/" data-release-check-cta>View the GhostGate Release Check</a>
+          </div>
+          <p class="rr-local-note"><span aria-hidden="true"></span>Your profile, answers, score, and Permission Envelope stay in this browser. Nothing is sent unless you separately submit the optional contact form after your result.</p>
+        </div>
+        <aside class="rr-boundary-card" aria-labelledby="boundary-title">
+          <span>SELF-ASSESSMENT / RR-01</span>
+          <h2 id="boundary-title">What this result means</h2>
+          <ul>
+            <li>It is a self-assessment.</li>
+            <li>It is not a security certification.</li>
+            <li>It does not guarantee safety.</li>
+            <li>It does not replace independent testing.</li>
+          </ul>
+          <p><strong>Do not enter credentials, secrets, personal data, customer data, or confidential instructions.</strong></p>
+        </aside>
+      </div>
+      <div class="rr-method">
+        <div><span>15</span><p>release-control questions</p></div>
+        <div><span>08</span><p>readiness dimensions</p></div>
+        <div><span>03</span><p>priority gaps</p></div>
+        <div><span>LOCAL</span><p>result generation</p></div>
+      </div>
+    </section>
+
+    <section class="rr-shell rr-panel rr-profile" data-panel="profile" hidden aria-labelledby="profile-title">
+      <div class="rr-panel-head">
+        <p class="gg-kicker">Step 1 / Define the subject</p>
+        <h2 id="profile-title" tabindex="-1">Describe the release boundary—without sensitive data.</h2>
+        <p>This profile shapes your sample Permission Envelope. Leave optional fields blank if the boundary is not yet defined.</p>
+      </div>
+      <form data-profile-form>
+        <div class="rr-form-grid">
+          <label>Agent or product name <span aria-hidden="true">*</span><input name="agentName" maxlength="200" required autocomplete="off"></label>
+          <label>Version identifier <span aria-hidden="true">*</span><input name="versionIdentifier" maxlength="160" required autocomplete="off" placeholder="Commit, release, or immutable build ID"></label>
+          <label>Environment <span aria-hidden="true">*</span><select name="environment" required><option value="">Select environment</option><option value="sandbox">Sandbox</option><option value="test">Test</option><option value="staging">Staging</option><option value="production candidate">Production candidate</option><option value="already deployed">Already deployed</option></select></label>
+          <label>Allowed tools <span>optional</span><textarea name="allowedTools" maxlength="1000" rows="3" placeholder="One tool or operation per line"></textarea></label>
+          <label>Approved identities <span>optional</span><textarea name="approvedIdentities" maxlength="1000" rows="3" placeholder="Test service account, reviewer role"></textarea></label>
+          <label>Allowed domains or systems <span>optional</span><textarea name="allowedSystems" maxlength="1000" rows="3" placeholder="One domain or system per line"></textarea></label>
+        </div>
+        <fieldset class="rr-capability-fieldset">
+          <legend>Which risk-bearing capabilities are in the intended scope?</legend>
+          <p>Select all that apply. These selections increase the importance of related controls; they are not treated as failures by themselves.</p>
+          <div class="rr-capabilities" data-capability-list></div>
+        </fieldset>
+        <div class="rr-warning"><strong>Input boundary</strong><p>Use labels and high-level descriptions only. Do not paste prompts, credentials, tokens, private URLs, customer records, or confidential instructions.</p></div>
+        <div class="gg-actions"><button class="gg-button gg-button-primary" type="submit">Begin 15-question check</button><button class="gg-button" type="button" data-review-intro>Review introduction</button></div>
+      </form>
+    </section>
+
+    <section class="rr-shell rr-panel rr-assessment" data-panel="questions" hidden aria-labelledby="assessment-title">
+      <div class="rr-progress-row">
+        <div><p class="gg-kicker">Step 2 / Control assessment</p><h2 id="assessment-title" tabindex="-1">Release-control maturity</h2></div>
+        <p data-progress-text aria-live="polite"></p>
+      </div>
+      <div class="rr-progress" role="progressbar" aria-label="Assessment progress" aria-valuemin="1" aria-valuemax="15" aria-valuenow="1"><span data-progress-bar></span></div>
+      <form data-question-form novalidate>
+        <div data-question-content></div>
+        <p class="rr-question-error" data-question-error role="alert" hidden></p>
+        <div class="rr-question-actions"><button class="gg-button" type="button" data-question-previous>Previous</button><button class="gg-button gg-button-primary" type="submit" data-question-next>Next control</button></div>
+      </form>
+      <p class="rr-na-note"><strong>“Not applicable” is not automatically safe.</strong> It receives limited credit because the assessment cannot confirm a control boundary that has not been demonstrated.</p>
+    </section>
+
+    <section class="rr-shell rr-panel rr-results" data-panel="results" hidden aria-labelledby="result-title">
+      <div class="rr-result-hero" aria-live="polite">
+        <p class="gg-kicker">Step 3 / Self-assessment result</p>
+        <h2 id="result-title" tabindex="-1" data-result-category></h2>
+        <p data-result-summary></p>
+        <div class="gg-actions"><a class="gg-button gg-button-primary" href="/ghostgate/release-check/#request" data-release-check-cta>Request the $5,000 Release Check</a><a class="gg-button" href="#" download="ghostgate-readiness-summary.md" data-download-result>Download local summary</a><button class="gg-button" type="button" data-restart>Restart assessment</button></div>
+      </div>
+
+      <section class="rr-result-section" aria-labelledby="dimensions-title">
+        <div class="rr-section-label"><span>01</span><h3 id="dimensions-title">Dimension results</h3><p>Scores are deterministic weighted completion values, not probabilities or safety guarantees.</p></div>
+        <ul class="rr-dimensions" data-dimensions></ul>
+      </section>
+
+      <section class="rr-result-section" aria-labelledby="gaps-title">
+        <div class="rr-section-label"><span>02</span><h3 id="gaps-title">Three highest-priority gaps</h3><p>Priority combines the control’s maturity, its dimension weights, and the selected risk-bearing capabilities.</p></div>
+        <div class="rr-gaps" data-priority-gaps></div>
+      </section>
+
+      <section class="rr-result-section" aria-labelledby="restrictions-title">
+        <div class="rr-section-label"><span>03</span><h3 id="restrictions-title">Suggested release restrictions</h3><p>Use these as starting conditions. A responsible release owner should approve the final boundary.</p></div>
+        <ul class="rr-restrictions" data-restrictions></ul>
+        <div class="rr-material-warning"><strong>Material-change warning</strong><p>Changes to the model, system instructions, tools, permissions, agent code, orchestration, retrieval sources, memory behavior, policy baseline, or deployment configuration can invalidate this result and require reassessment.</p></div>
+      </section>
+
+      <section class="rr-result-section" aria-labelledby="envelope-title">
+        <div class="rr-section-label"><span>04</span><h3 id="envelope-title">Sample Permission Envelope</h3><p>This editable draft translates the assessment boundary into structured control fields. Review it before use.</p></div>
+        <div class="rr-code-actions"><button class="gg-button" type="button" data-copy-json>Copy JSON</button><button class="gg-button" type="button" data-copy-yaml>Copy YAML</button></div>
+        <pre class="rr-code" tabindex="0"><code data-envelope-output></code></pre>
+      </section>
+
+      <section class="rr-lead" aria-labelledby="lead-title">
+        <div>
+          <p class="gg-kicker">Optional / Human scope review</p>
+          <h3 id="lead-title">Get help qualifying this release.</h3>
+          <p>Send only contact details, your readiness category, high-level risk dimensions, and optional non-sensitive context. Your 15 answers and Permission Envelope are never included.</p>
+          <p class="rr-data-boundary"><strong>Do not include secrets, credentials, prompts, customer data, personal data, or confidential instructions.</strong></p>
+        </div>
+        <form data-lead-form action="/api/readiness-lead" method="post">
+          <div class="rr-form-grid">
+            <label>Full name <span aria-hidden="true">*</span><input name="fullName" maxlength="100" autocomplete="name" required></label>
+            <label>Work email <span aria-hidden="true">*</span><input name="email" type="email" maxlength="254" autocomplete="email" required></label>
+            <label>Company <span aria-hidden="true">*</span><input name="company" maxlength="160" autocomplete="organization" required></label>
+            <label>Agent or product name <span aria-hidden="true">*</span><input name="agentName" maxlength="200" required></label>
+            <label class="rr-field-wide">Readiness category<input data-lead-category name="readinessCategory" readonly></label>
+            <label class="rr-field-wide">Optional short, non-sensitive context<textarea name="context" maxlength="1500" rows="4"></textarea></label>
+          </div>
+          <div class="rr-honeypot" aria-hidden="true"><label>Leave empty<input name="website" tabindex="-1" autocomplete="off"></label></div>
+          <label class="rr-consent"><input name="consent" type="checkbox" value="agreed" required><span>I consent to GhostFrame using these contact details to respond about release qualification, and confirm I included no sensitive information. <span aria-hidden="true">*</span></span></label>
+          <p class="rr-lead-status" data-lead-status role="alert" tabindex="-1" hidden></p>
+          <button class="gg-button gg-button-primary" type="submit">Ask GhostFrame to qualify this release</button>
+          <p class="rr-form-note">No application database persistence. Email transport uses GhostFrame’s configured secure delivery provider.</p>
+        </form>
+      </section>
+    </section>
+
+    <aside class="rr-inspector" data-analytics-inspector hidden aria-label="Development analytics event inspector"><strong>Local event inspector</strong><p>Development only. Payloads are privacy-filtered.</p><pre data-analytics-log></pre></aside>
+  </main>
+
+  <footer class="gg-footer">
+    <div class="gg-shell">
+      <div class="gg-footer-main"><div><a class="gg-brand" href="/ghostgate/"><span class="gg-brand-mark" aria-hidden="true"></span><span><strong>GHOSTGATE</strong><small>by GhostFrame Studios</small></span></a><p class="gg-footer-note">A free, browser-local release-control self-assessment. Not a certification or guarantee.</p></div><nav class="gg-footer-nav" aria-label="Footer navigation"><a href="/tools/agent-release-readiness/">Readiness Tool</a><a href="/ghostgate/release-check/">Release Check</a><a href="/ghostgate/evidence/">Evidence Room</a><a href="/ghostgate/">GhostGate</a><a href="/security/">Security</a><a href="/contact/">Contact</a></nav></div>
+      <div class="gg-footer-legal"><span>© <span data-year></span> GhostFrame Studios</span><span>Self-assessment / Browser-local / No safety guarantee</span></div>
+    </div>
+  </footer>
+  <script type="module" src="/src/site.js"></script>
+  <script type="module" src="/src/readiness-app.js"></script>
+</body>
+</html>

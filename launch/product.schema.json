@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://www.ghostframestudios.com/schemas/launch-product-0.1.json",
+  "title": "GhostFrame Launch Engine product manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "manifest_version", "product_id", "product_name", "tagline", "public_url", "product_category",
+    "problem", "target_users", "buyer_roles", "core_promise", "free_tool", "paid_offer", "price",
+    "payment_terms", "delivery_target", "scope", "exclusions", "evidence", "proof_links", "screenshots",
+    "demo_assets", "primary_cta", "secondary_cta", "founder", "company", "public_claims",
+    "prohibited_claims", "launch_channels", "outreach_angles", "keywords", "tracking_parameters",
+    "lead_destination", "seller_identity", "product_status", "launch_status", "seller_id",
+    "organization_id", "offers", "related_products", "referral_configuration", "listing_visibility",
+    "moderation_state"
+  ],
+  "properties": {
+    "manifest_version": { "const": "0.1" },
+    "product_id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]{1,63}$" },
+    "product_name": { "$ref": "#/$defs/shortText" },
+    "tagline": { "$ref": "#/$defs/shortText" },
+    "public_url": { "$ref": "#/$defs/httpsUrl" },
+    "product_category": { "$ref": "#/$defs/shortText" },
+    "problem": { "$ref": "#/$defs/longText" },
+    "target_users": { "$ref": "#/$defs/nonEmptyTextArray" },
+    "buyer_roles": { "$ref": "#/$defs/nonEmptyTextArray" },
+    "core_promise": { "$ref": "#/$defs/longText" },
+    "free_tool": { "$ref": "#/$defs/offer" },
+    "paid_offer": { "$ref": "#/$defs/offer" },
+    "price": { "$ref": "#/$defs/shortText" },
+    "payment_terms": { "$ref": "#/$defs/shortText" },
+    "delivery_target": { "$ref": "#/$defs/shortText" },
+    "scope": { "$ref": "#/$defs/nonEmptyTextArray" },
+    "exclusions": { "$ref": "#/$defs/nonEmptyTextArray" },
+    "evidence": { "$ref": "#/$defs/nonEmptyTextArray" },
+    "proof_links": { "type": "array", "items": { "$ref": "#/$defs/httpsUrl" }, "maxItems": 20 },
+    "screenshots": { "type": "array", "items": { "$ref": "#/$defs/safeAsset" }, "maxItems": 20 },
+    "demo_assets": { "type": "array", "items": { "$ref": "#/$defs/safeAsset" }, "maxItems": 20 },
+    "primary_cta": { "$ref": "#/$defs/cta" },
+    "secondary_cta": { "$ref": "#/$defs/cta" },
+    "founder": { "$ref": "#/$defs/identity" },
+    "company": { "$ref": "#/$defs/identity" },
+    "public_claims": { "$ref": "#/$defs/nonEmptyTextArray" },
+    "prohibited_claims": { "$ref": "#/$defs/nonEmptyTextArray" },
+    "launch_channels": { "$ref": "#/$defs/nonEmptyTextArray" },
+    "outreach_angles": { "$ref": "#/$defs/nonEmptyTextArray" },
+    "keywords": { "$ref": "#/$defs/nonEmptyTextArray" },
+    "tracking_parameters": {
+      "type": "object", "additionalProperties": false,
+      "required": ["source", "medium", "campaign"],
+      "properties": { "source": { "$ref": "#/$defs/slug" }, "medium": { "$ref": "#/$defs/slug" }, "campaign": { "$ref": "#/$defs/slug" } }
+    },
+    "lead_destination": { "type": "string", "pattern": "^[A-Z][A-Z0-9_]{2,79}$" },
+    "seller_identity": { "$ref": "#/$defs/identity" },
+    "product_status": { "enum": ["draft", "private-beta", "public"] },
+    "launch_status": { "enum": ["planning", "soft-launch", "launching", "evergreen", "paused"] },
+    "seller_id": { "$ref": "#/$defs/slug" },
+    "organization_id": { "$ref": "#/$defs/slug" },
+    "offers": { "type": "array", "items": { "$ref": "#/$defs/offer" }, "minItems": 1, "maxItems": 20 },
+    "related_products": { "type": "array", "items": { "$ref": "#/$defs/slug" }, "maxItems": 20 },
+    "referral_configuration": {
+      "type": "object", "additionalProperties": false, "required": ["enabled", "mode"],
+      "properties": { "enabled": { "type": "boolean" }, "mode": { "enum": ["disabled", "invite-only", "public"] } }
+    },
+    "listing_visibility": { "enum": ["internal", "unlisted", "public"] },
+    "moderation_state": { "enum": ["not-submitted", "pending", "approved", "rejected"] }
+  },
+  "$defs": {
+    "shortText": { "type": "string", "minLength": 1, "maxLength": 240 },
+    "longText": { "type": "string", "minLength": 1, "maxLength": 2000 },
+    "slug": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]{1,63}$" },
+    "httpsUrl": { "type": "string", "pattern": "^https://[^\\s]+$", "maxLength": 500 },
+    "safeAsset": { "type": "string", "pattern": "^(https://[^\\s]+|/[A-Za-z0-9._~!$&'()*+,;=:@%/-]+)$", "maxLength": 500 },
+    "nonEmptyTextArray": { "type": "array", "items": { "$ref": "#/$defs/shortText" }, "minItems": 1, "maxItems": 50, "uniqueItems": true },
+    "cta": {
+      "type": "object", "additionalProperties": false, "required": ["label", "url"],
+      "properties": { "label": { "$ref": "#/$defs/shortText" }, "url": { "$ref": "#/$defs/httpsUrl" } }
+    },
+    "identity": {
+      "type": "object", "additionalProperties": false, "required": ["name", "url"],
+      "properties": { "name": { "$ref": "#/$defs/shortText" }, "url": { "$ref": "#/$defs/httpsUrl" }, "bio": { "$ref": "#/$defs/longText" } }
+    },
+    "offer": {
+      "type": "object", "additionalProperties": false, "required": ["id", "name", "description", "url"],
+      "properties": {
+        "id": { "$ref": "#/$defs/slug" }, "name": { "$ref": "#/$defs/shortText" },
+        "description": { "$ref": "#/$defs/longText" }, "url": { "$ref": "#/$defs/httpsUrl" },
+        "price": { "$ref": "#/$defs/shortText" }, "status": { "enum": ["draft", "active", "retired"] }
+      }
+    }
+  }
+}

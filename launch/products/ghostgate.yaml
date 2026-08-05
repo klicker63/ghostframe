@@ -1,0 +1,140 @@
+manifest_version: "0.1"
+product_id: ghostgate
+product_name: GhostGate Agent Release Check
+tagline: One exact agent version. One tested configuration. One reviewable release record.
+public_url: https://www.ghostframestudios.com/ghostgate/release-check/
+product_category: AI agent release assessment
+problem: Teams can give AI agents consequential tools and permissions without a version-bound record of what was tested, what was allowed, and who approved release.
+target_users:
+  - AI product founders preparing an agent for production
+  - Engineering teams integrating tool-using agents
+  - Security teams reviewing agent authority and evidence
+buyer_roles:
+  - Founder or CTO
+  - Head of AI or engineering
+  - Product security lead
+  - Enterprise security or procurement reviewer
+core_promise: Test one exact AI agent version against its intended tools, permissions, policies, and agreed hostile scenarios, then deliver a human-reviewed release decision and version-bound evidence package.
+free_tool:
+  id: agent-release-readiness
+  name: GhostGate Agent Release Readiness Check
+  description: A no-login, browser-local self-assessment that identifies control gaps and generates a sample Permission Envelope.
+  url: https://www.ghostframestudios.com/tools/agent-release-readiness/
+  price: Free
+  status: active
+paid_offer:
+  id: agent-release-check
+  name: GhostGate Agent Release Check
+  description: A fixed-scope independent release assessment for one exact agent version and tested configuration.
+  url: https://www.ghostframestudios.com/ghostgate/release-check/
+  price: $5,000 USD fixed scope
+  status: active
+price: $5,000 USD fixed scope
+payment_terms: 50% at kickoff and 50% at delivery
+delivery_target: Seven business days after intake readiness, usable test access, scope confirmation, and kickoff
+scope:
+  - One AI agent
+  - One exact agent version or immutable build
+  - One test environment or supported adapter
+  - One tool and permission configuration
+  - One policy baseline
+  - Up to 20 agreed hostile, misuse, permission-boundary, and behavioral scenarios
+  - One same-version and same-scope remediation retest
+exclusions:
+  - No guarantee of safety or complete scenario coverage
+  - No compliance certification or legal opinion
+  - No production monitoring or production interception unless separately contracted
+  - No assessment transfer to materially changed versions
+evidence:
+  - Agent Trust Report
+  - Pass, Conditional Pass, or Block release verdict for the tested configuration
+  - Permission Envelope in JSON and YAML
+  - Behavioral evidence and scenario coverage summary
+  - Version-bound signed attestation
+  - Downloadable evidence bundle
+proof_links:
+  - https://www.ghostframestudios.com/ghostgate/evidence/
+screenshots:
+  - /og-release-check.png
+demo_assets:
+  - https://www.ghostframestudios.com/ghostgate/evidence/
+  - https://www.ghostframestudios.com/tools/agent-release-readiness/
+primary_cta:
+  label: Request a $5,000 Release Check
+  url: https://www.ghostframestudios.com/ghostgate/release-check/#request
+secondary_cta:
+  label: Assess an Agent
+  url: https://www.ghostframestudios.com/tools/agent-release-readiness/
+founder:
+  name: GhostFrame founder
+  url: https://www.ghostframestudios.com/contact/
+  bio: Founder-led product development and technical review at GhostFrame Studios.
+company:
+  name: GhostFrame Studios
+  url: https://www.ghostframestudios.com/
+  bio: Evidence-driven security systems for autonomous agents and high-consequence software decisions.
+public_claims:
+  - The free readiness check runs locally in the browser and requires no login.
+  - The Agent Release Check covers one exact agent version and one tested configuration.
+  - The fixed scope includes up to 20 agreed scenarios and one same-scope remediation retest.
+  - Deliverables include a human-reviewed release verdict, Permission Envelope, and version-bound evidence package.
+  - The fixed price is $5,000 USD with 50% at kickoff and 50% at delivery.
+prohibited_claims:
+  - Guarantees agent safety
+  - Provides compliance certification
+  - Proves every possible attack path was tested
+  - Is trusted by customers or deployed at enterprise scale
+  - Replaces security teams or independent testing
+launch_channels:
+  - Product Hunt
+  - Show HN
+  - Reddit
+  - DEV Community
+  - GitHub Discussions
+  - Founder social channels
+  - Permission-based Slack and Discord communities
+  - Direct verified founder email
+  - Podcasts and newsletters
+outreach_angles:
+  - A free release-control self-assessment for tool-using AI agents
+  - Why AI agent evidence must be tied to an exact version
+  - Turning agent permissions into a reviewable Permission Envelope
+  - How material changes invalidate earlier release evidence
+keywords:
+  - AI agent security
+  - AI agent release readiness
+  - agent permission boundaries
+  - AI agent testing
+  - Permission Envelope
+tracking_parameters:
+  source: ghostframe
+  medium: organic
+  campaign: ghostgate-launch-v01
+lead_destination: READINESS_LEAD_TO_EMAIL
+seller_identity:
+  name: GhostFrame Studios
+  url: https://www.ghostframestudios.com/
+  bio: The first-party seller and delivery organization for GhostGate.
+product_status: public
+launch_status: soft-launch
+seller_id: ghostframe-studios
+organization_id: ghostframe-studios
+offers:
+  - id: agent-release-readiness
+    name: GhostGate Agent Release Readiness Check
+    description: Free browser-local self-assessment and sample Permission Envelope.
+    url: https://www.ghostframestudios.com/tools/agent-release-readiness/
+    price: Free
+    status: active
+  - id: agent-release-check
+    name: GhostGate Agent Release Check
+    description: Fixed-scope independent assessment for one exact agent version.
+    url: https://www.ghostframestudios.com/ghostgate/release-check/
+    price: $5,000 USD fixed scope
+    status: active
+related_products: []
+referral_configuration:
+  enabled: false
+  mode: disabled
+listing_visibility: public
+moderation_state: approved

@@ -8,6 +8,7 @@ export default defineConfig({
         home: resolve(import.meta.dirname, 'index.html'),
         ghostgate: resolve(import.meta.dirname, 'ghostgate/index.html'),
         releaseCheck: resolve(import.meta.dirname, 'ghostgate/release-check/index.html'),
+        agentReleaseReadiness: resolve(import.meta.dirname, 'tools/agent-release-readiness/index.html'),
         proof: resolve(import.meta.dirname, 'proof/index.html'),
         pilot: resolve(import.meta.dirname, 'pilot/index.html'),
         security: resolve(import.meta.dirname, 'security/index.html'),

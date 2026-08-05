@@ -1,0 +1,110 @@
+/* Focused result-page layout corrections. Keep behavioral styles in readiness.css. */
+
+.rr-result-section:has(> .rr-material-warning),
+.rr-result-section:has(> .rr-code) {
+  column-gap: clamp(36px, 4vw, 52px);
+  row-gap: 16px;
+}
+
+.rr-result-section > .rr-restrictions,
+.rr-result-section > .rr-material-warning,
+.rr-result-section > .rr-code-actions,
+.rr-result-section > .rr-code {
+  grid-column: 2;
+  min-width: 0;
+}
+
+.rr-material-warning {
+  box-sizing: border-box;
+  grid-template-columns: minmax(150px, 180px) minmax(0, 1fr);
+  width: 100%;
+  margin-top: 2px;
+}
+
+.rr-material-warning strong,
+.rr-material-warning p {
+  min-width: 0;
+  word-break: normal;
+  overflow-wrap: break-word;
+}
+
+.rr-code-actions {
+  align-self: end;
+  flex-wrap: wrap;
+  margin-bottom: 0;
+}
+
+.rr-code-actions .gg-button {
+  flex: 0 0 auto;
+  width: auto;
+  min-height: 38px;
+  padding: 7px 13px;
+  font-size: .7rem;
+}
+
+.rr-code {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: auto;
+  white-space: pre;
+}
+
+.rr-code > code {
+  display: block;
+  width: max-content;
+  min-width: 100%;
+}
+
+.rr-lead[aria-labelledby="lead-title"] {
+  box-sizing: border-box;
+  grid-template-columns: minmax(240px, .58fr) minmax(0, 1.42fr);
+  column-gap: clamp(40px, 5vw, 76px);
+  row-gap: 36px;
+  width: 100%;
+  max-width: none;
+}
+
+.rr-lead[aria-labelledby="lead-title"] form,
+.rr-lead[aria-labelledby="lead-title"] .rr-form-grid,
+.rr-lead[aria-labelledby="lead-title"] .rr-form-grid > label {
+  min-width: 0;
+}
+
+.rr-lead[aria-labelledby="lead-title"] .rr-form-grid {
+  column-gap: 22px;
+  row-gap: 22px;
+}
+
+@media (max-width: 980px) {
+  .rr-result-section > .rr-restrictions,
+  .rr-result-section > .rr-material-warning,
+  .rr-result-section > .rr-code-actions,
+  .rr-result-section > .rr-code {
+    grid-column: 1;
+  }
+
+  .rr-result-section:has(> .rr-material-warning),
+  .rr-result-section:has(> .rr-code) {
+    row-gap: 20px;
+  }
+
+  .rr-lead[aria-labelledby="lead-title"] {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 680px) {
+  .rr-material-warning {
+    grid-template-columns: 1fr;
+  }
+
+  .rr-code {
+    padding: 18px;
+  }
+
+  .rr-lead[aria-labelledby="lead-title"] {
+    padding: 24px;
+  }
+}

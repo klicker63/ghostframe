@@ -7,7 +7,7 @@
       "headers": [
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'self'; script-src 'self' 'sha256-AhzxEuplzSImrgDMW+hMK8vzl5lD127zjL2XYYhxpUk=' 'sha256-U5fKBHoTDcCjbLQZKrWO7CRaWyztu+0mdzrJpgERcNU=' 'sha256-OfSE3klsxFGxS0LLWVNjkZfZ6CFbf0mbq10an2vYnF8=' 'sha256-/I5avDTsJ2bWWC6hxcBrqRFPkjNdqWP+rbgpHygaW0w='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self' mailto:; upgrade-insecure-requests"
+          "value": "default-src 'self'; script-src 'self' 'sha256-AhzxEuplzSImrgDMW+hMK8vzl5lD127zjL2XYYhxpUk=' 'sha256-U5fKBHoTDcCjbLQZKrWO7CRaWyztu+0mdzrJpgERcNU=' 'sha256-OfSE3klsxFGxS0LLWVNjkZfZ6CFbf0mbq10an2vYnF8=' 'sha256-/I5avDTsJ2bWWC6hxcBrqRFPkjNdqWP+rbgpHygaW0w=' 'sha256-JupI4JlAbgjrUGvFYx4jXsXOG8ensEZiRWum/puSWJc='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self' mailto:; upgrade-insecure-requests"
         },
         { "key": "Strict-Transport-Security", "value": "max-age=63072000; includeSubDomains; preload" },
         { "key": "X-Content-Type-Options", "value": "nosniff" },
