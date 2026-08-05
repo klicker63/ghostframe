@@ -1,26 +1,56 @@
-> **DRAFT — Human review required before publication.** Verify channel rules, claims, links, and current product details.
+> **DRAFT — Human review required before publication.**
+> Verify the production URL and test the complete flow before posting.
 
-# Show HN: GhostGate Agent Release Readiness Check — a local release-control self-assessment
+# Submission title
 
-We built GhostGate Agent Release Readiness Check for teams preparing tool-using AI agents for production.
+Show HN: GhostGate – A browser-local AI agent release readiness check
 
-The problem: Teams can give AI agents consequential tools and permissions without a version-bound record of what was tested, what was allowed, and who approved release.
+# Submission URL
 
-The assessment asks 15 control questions, weights related controls when consequential capabilities are selected, and generates a sample Permission Envelope in the browser. It does not send answers to a server and does not present the result as certification.
+https://www.ghostframestudios.com/tools/agent-release-readiness/
 
-The paid follow-on is GhostGate Agent Release Check ($5,000 USD fixed scope), but the free tool is useful without submitting contact information.
+# First comment
 
-Technical feedback we would value:
+Hi HN,
 
-- Which control boundary is underspecified?
-- Which answer option is ambiguous?
-- Is the Permission Envelope usable as a planning artifact?
+I built this while developing GhostGate, an independent release-assessment process for tool-using AI agents.
 
-Demo: https://www.ghostframestudios.com/tools/agent-release-readiness/?utm_source=ghostframe&utm_medium=organic&utm_campaign=ghostgate-launch-v01&utm_content=show-hn
+I kept running into a basic problem: teams can describe what an agent is intended to do, but often cannot state precisely which version, tools, permissions, identities, data boundaries, and approval gates are actually being released.
 
-Approved product facts:
-- The free readiness check runs locally in the browser and requires no login.
-- The Agent Release Check covers one exact agent version and one tested configuration.
-- The fixed scope includes up to 20 agreed scenarios and one same-scope remediation retest.
-- Deliverables include a human-reviewed release verdict, Permission Envelope, and version-bound evidence package.
-- The fixed price is $5,000 USD with 50% at kickoff and 50% at delivery.
+The Agent Release Readiness Check is a free, no-login self-assessment intended to make that boundary more concrete.
+
+It asks 15 control questions and uses deterministic scoring across eight dimensions:
+
+- authority
+- permissions
+- data exposure
+- human approval
+- adversarial exposure
+- version control
+- observability
+- recovery readiness
+
+Capabilities such as terminal execution, authenticated browser sessions, email sending, deployments, financial actions, multi-agent delegation, and persistent memory increase the weight of related controls.
+
+The result includes:
+
+- a readiness category
+- dimension-level results
+- the three highest-priority gaps
+- suggested release restrictions
+- a sample Permission Envelope in JSON and YAML
+- a locally downloadable summary
+
+The assessment, scoring, and Permission Envelope generation run entirely in the browser. Answers are not transmitted. There is an optional contact form after the result. If submitted, it sends the entered contact fields, readiness category, up to three high-level risk dimensions, optional context, and a non-secret correlation marker—not the individual answers or Permission Envelope.
+
+This is not certification, and it does not claim that an agent is safe. The goal is to help teams define a release boundary that can actually be reviewed, reproduced, and tested.
+
+I would especially value technical feedback on:
+
+- Are any control questions underspecified?
+- Are the answer choices too coarse?
+- Are any capability weights obviously wrong?
+- Is the Permission Envelope useful as a planning artifact?
+- Which important release controls are missing?
+
+I’ll be around to answer questions and discuss the scoring model and implementation.

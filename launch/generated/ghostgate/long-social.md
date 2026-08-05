@@ -2,14 +2,16 @@
 
 # Long social post
 
-An AI agent release should not inherit trust from a product name or a successful demo.
+A successful demo does not define an AI agent’s release boundary.
 
-The release subject is an exact combination of model, instructions, code, tools, identities, permissions, retrieval, memory, policy, and environment. Change a material component and the earlier evidence may no longer apply.
+The release subject is an exact combination of model, instructions, code, tools, identities, permissions, retrieval, memory, policy, and environment. A material change to any of those can make earlier evidence stale.
 
-We built GhostGate Agent Release Readiness Check to make that boundary concrete. It asks 15 questions across authority, permissions, data, approvals, adversarial exposure, version control, observability, and recovery. Risk-bearing capabilities increase the importance of related controls. The result identifies three priority gaps and generates a sample Permission Envelope.
+I built GhostGate Agent Release Readiness Check to make that boundary easier to inspect. The free tool asks 15 control questions across authority, permissions, data exposure, approvals, adversarial exposure, version control, observability, and recovery. Capabilities such as terminal execution, authenticated browsing, external sending, deployments, delegation, and persistent memory increase the importance of related controls.
 
-It is free, no-login, and browser-local. It is also explicitly a self-assessment—not certification or a guarantee.
+The result identifies three priority gaps and generates a sample Permission Envelope. It runs in the browser without a login, and assessment answers are not sent to GhostFrame.
+
+It is a self-assessment—not certification, a safety guarantee, or proof that independent testing has occurred.
 
 https://www.ghostframestudios.com/tools/agent-release-readiness/?utm_source=ghostframe&utm_medium=organic&utm_campaign=ghostgate-launch-v01&utm_content=social
 
-For teams that need an independent, version-bound assessment, GhostGate Agent Release Check is $5,000 USD fixed scope.
+Even without the tool, one release question is worth writing down: which exact version is allowed to perform which exact operations, under whose approval?
