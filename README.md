@@ -1,17 +1,21 @@
 # GhostFrame Studios website
 
-Static Vite multi-page site for GhostGate and the GhostFrame Studios portfolio. GhostGate is the primary commercial product; Proofline and the other studio projects remain available through the Studio route.
+Static Vite multi-page site for GhostFrame Studios and its portfolio. GhostFrame is the parent company; GhostGate remains the primary commercial product, with its proof, release-check, evidence, security, and pilot routes preserved as a product-specific system.
 
 ## Public routes
 
-- `/` — GhostGate commercial homepage
+- `/` — GhostFrame Studios company homepage
+- `/work/` — primary systems, maturity boundaries, and preserved product paths
+- `/labs/` — research programs, prototypes, and emerging systems
+- `/about/` — studio identity, manifesto, and engineering method
+- `/demon-core/` — distinct adversarial-testing research experience, including Possession and the restricted Demon Chain teaser
 - `/ghostgate/` — detailed product and qualification workflow
 - `/ghostgate/release-check/` — $5,000 fixed-scope assessment and secure scope-review form
 - `/proof/` — controlled, deterministic, synthetic, and cryptographic proof
 - `/pilot/` — $32,000 six-week private qualification pilot
 - `/security/` — security model, data handling, human authority, and limitations
-- `/studio/` — GhostFrame parent-studio portfolio
-- `/contact/` — prepared direct-email technical review request
+- `/studio/` — legacy studio index pointing visitors into the new parent-company architecture
+- `/contact/` — studio inquiry, Release Check, and private-pilot contact paths
 - `/ghostgate/evidence/` — legacy sanitized evidence-format sample
 - `/proofline/` — Proofline product page
 

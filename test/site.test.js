@@ -8,6 +8,10 @@ const root = path.resolve(import.meta.dirname, '..');
 const load = file => readFile(path.join(root, file), 'utf8');
 const commercialRoutes = [
   ['index.html', '/'],
+  ['work/index.html', '/work/'],
+  ['labs/index.html', '/labs/'],
+  ['about/index.html', '/about/'],
+  ['demon-core/index.html', '/demon-core/'],
   ['ghostgate/index.html', '/ghostgate/'],
   ['ghostgate/release-check/index.html', '/ghostgate/release-check/'],
   ['tools/agent-release-readiness/index.html', '/tools/agent-release-readiness/'],
@@ -25,7 +29,8 @@ test('every commercial route has production metadata and shared runtime', async 
     assert.match(html, new RegExp(`rel="canonical" href="${canonical.replaceAll('.', '\\.')}`));
     assert.match(html, new RegExp(`property="og:url" content="${canonical.replaceAll('.', '\\.')}`));
     assert.match(html, /name="twitter:card" content="summary_large_image"/);
-    const ogImage = route === '/' ? 'og-security-portfolio.png' : ['/ghostgate/release-check/', '/tools/agent-release-readiness/'].includes(route) ? 'og-release-check.png' : 'og.png';
+    const studioRoutes = ['/', '/work/', '/labs/', '/about/', '/demon-core/', '/studio/', '/contact/'];
+    const ogImage = studioRoutes.includes(route) ? 'og-ghostframe-studios.png' : ['/ghostgate/release-check/', '/tools/agent-release-readiness/'].includes(route) ? 'og-release-check.png' : 'og.png';
     assert.match(html, new RegExp(`property="og:image" content="https:\\/\\/www\\.ghostframestudios\\.com\\/${ogImage.replace('.', '\\.')}"`));
     assert.match(html, /src="\/src\/site\.js"/);
     assert.match(html, /href="\/favicon\.svg"/);
@@ -33,32 +38,57 @@ test('every commercial route has production metadata and shared runtime', async 
   }
 });
 
-test('homepage presents the GhostFrame portfolio and connected security spine', async () => {
+test('homepage presents GhostFrame as the company and features a multi-domain portfolio', async () => {
   const html = await load('index.html');
-  assert.match(html, /GhostFrame \| Evidence-Driven Security Systems/);
-  assert.match(html, /Security decisions cannot rely on <span>assumptions\.<\/span>/);
-  assert.match(html, /GhostFrame builds evidence-driven security systems for autonomous agents, cyber-extortion claims, and contaminated AI memory\./);
-  assert.match(html, /The GhostFrame Security Spine/);
-  for (const stage of ['Before operation', 'During an incident', 'After contamination']) {
-    assert.match(html, new RegExp(stage));
-  }
-  for (const product of ['GhostGate', 'Proofline', 'Recall']) assert.match(html, new RegExp(product));
+  assert.match(html, /GhostFrame Studios \| We Build What Should Exist/);
+  assert.match(html, /We build what should exist\./i);
+  assert.match(html, /Original software for problems without good answers/);
+  assert.match(html, /AI, cybersecurity, simulation, and creative technology/);
+  for (const product of ['Demon Core', 'GhostGate', 'Proofline', 'GhostFrame Recall', 'Breach Escape', 'Livery Forge']) assert.match(html, new RegExp(product));
+  for (const route of ['/work/', '/labs/', '/about/', '/contact/']) assert.match(html, new RegExp(`href="${route}"`));
+  assert.match(html, /Research program/);
+  assert.match(html, /Controlled pilot/);
+  assert.match(html, /Private-pilot evaluation/);
+  assert.match(html, /Research preview/);
+  assert.match(html, /Playable prototype/);
+  assert.match(html, /Active research/);
+  assert.match(html, /href="\/demon-core\/"/);
   assert.match(html, /href="\/ghostgate\/"/);
   assert.match(html, /href="\/proofline\/"/);
-  assert.match(html, /href="#recall"/);
 });
 
-test('homepage communicates evidence principles, limits, pilot terms, and contact path', async () => {
+test('homepage communicates the studio manifesto, evidence principles, and work-with path', async () => {
   const html = await load('index.html');
-  for (const principle of ['Evidence first', 'Human-bound action', 'Controlled proof', 'Honest limitations']) assert.match(html, new RegExp(principle));
-  assert.match(html, /Recall is currently offered as a controlled research preview\./);
-  assert.match(html, /Production remediation remains human-authorized/);
-  assert.match(html, /8–10 weeks/);
-  assert.match(html, /\$72,500/);
-  assert.match(html, /\$50,000/);
-  assert.match(html, /\/commercial\/ghostframe-integrated-pilot\.html/);
-  assert.match(html, /\/commercial\/ghostframe-integrated-pilot-deck\.html/);
-  assert.match(html, /mailto:hello@ghostframestudios\.com\?subject=GhostFrame%20Scoped%20Fit%20Assessment/);
+  assert.match(html, /GhostFrame builds the missing systems\./);
+  for (const principle of ['Build the hard part first', 'Prove what actually works', 'State limitations clearly', 'Kill weak ideas']) assert.match(html, new RegExp(principle));
+  assert.match(html, /Maturity is labeled directly; research is not dressed up as production\./);
+  assert.match(html, /works selectively on technical evaluations, controlled pilots, and unusual engineering problems/i);
+  assert.match(html, /href="\/contact\/"/);
+  assert.match(html, /hello@ghostframestudios\.com/);
+});
+
+test('Demon Core is a distinct research environment with honest interface boundaries', async () => {
+  const [html, script] = await Promise.all([load('demon-core/index.html'), load('src/demon-core.js')]);
+  assert.match(html, /Everything beyond this point is designed to fail\./);
+  assert.match(html, /research program/i);
+  assert.match(html, /does not represent a live run or production deployment/i);
+  assert.match(html, /visual storytelling devices/);
+  assert.match(html, /not live telemetry/i);
+  for (const state of ['18', '37', '61', '78', '84', '92', '97', '100']) assert.match(html, new RegExp(`data-load="${state}"`));
+  assert.match(script, /prefers-reduced-motion/);
+  assert.match(script, /dataset\.critical/);
+});
+
+test('Possession remains inside Demon Core and Demon Chain exposes only a restricted teaser', async () => {
+  const html = await load('demon-core/index.html');
+  assert.match(html, /Campaign family \/ Persistent influence/);
+  assert.match(html, /Possession is the Demon Core campaign model/);
+  for (const stage of ['CONTAMINATE', 'DORMANCY', 'TRIGGER', 'MANIFEST', 'PROPAGATE', 'EXORCISE', 'VERIFY']) assert.match(html, new RegExp(stage));
+  assert.match(html, /ANOMALOUS PERSISTENCE DETECTED/);
+  assert.match(html, /Demon Chain/);
+  assert.match(html, /Some failures don’t stay where they started\./);
+  assert.match(html, /Restricted \/\/ Concept in development/);
+  assert.doesNotMatch(html, /Demon Chain[^<]{0,120}(?:architecture|feature|capability|platform)/i);
 });
 
 test('proof page separates and labels controlled, deterministic, synthetic, and cryptographic evidence', async () => {
@@ -153,11 +183,11 @@ test('security page publishes honest human-authority and product boundaries', as
   for (const claim of ['does not guarantee universal or future safety', 'does not prove malicious intent', 'does not replace security teams', 'does not autonomously certify compliance', 'does not claim customer production validation yet', 'does not claim production fleet-scale validation', 'does not currently provide managed cloud hosting', 'SSO, SAML, SCIM, billing, cloud orchestration, or broad production deployment automation', 'does not require production secrets', 'Release authority remains with the customer']) assert.match(html, new RegExp(claim, 'i'));
 });
 
-test('studio retains every existing project while keeping GhostGate primary', async () => {
-  const studio = await load('studio/index.html');
-  for (const project of ['GhostGate', 'Proofline', 'Breach Escape', 'Livery Forge']) assert.match(studio, new RegExp(project));
-  const home = await load('index.html');
-  assert.doesNotMatch(home, /Breach Escape|Livery Forge/);
+test('studio hierarchy keeps GhostFrame primary while retaining every documented project', async () => {
+  const [studio, work, labs] = await Promise.all([load('studio/index.html'), load('work/index.html'), load('labs/index.html')]);
+  for (const project of ['Demon Core', 'GhostGate', 'Proofline', 'Recall', 'Breach Escape', 'Livery Forge']) assert.match(studio + work + labs, new RegExp(project));
+  assert.match(studio, /GhostFrame is bigger than any one system\./);
+  assert.match(work, /GhostGate proof remains intact\./);
 });
 
 test('review CTA uses one centralized email and approved prepared content', async () => {
@@ -171,12 +201,12 @@ test('review CTA uses one centralized email and approved prepared content', asyn
   assert.match(contact, /data-review-link/);
   assert.match(contact, /No submission form/);
   assert.match(home, /hello@ghostframestudios\.com/);
-  assert.match(home, /GhostFrame%20Scoped%20Fit%20Assessment/);
+  assert.match(contact, /GhostFrame%20Studio%20Inquiry/);
 });
 
 test('navigation runtime supports mobile closing, Escape, focus, and reduced motion', async () => {
-  const [script, commercialCss, portfolioCss] = await Promise.all([load('src/site.js'), load('src/commercial.css'), load('src/portfolio.css')]);
-  const css = commercialCss + portfolioCss;
+  const [script, commercialCss, portfolioCss, ghostframeCss, demonCoreCss] = await Promise.all([load('src/site.js'), load('src/commercial.css'), load('src/portfolio.css'), load('src/ghostframe.css'), load('src/demon-core.css')]);
+  const css = commercialCss + portfolioCss + ghostframeCss + demonCoreCss;
   assert.match(script, /menuButton\?\.addEventListener\('click'/);
   assert.match(script, /closest\('a'\).*setMenu\(false\)/);
   assert.match(script, /Escape/);
