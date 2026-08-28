@@ -1,13 +1,9 @@
-import { createAnalytics, createFirstPartyAdapter } from './analytics.js';
-
 const form = document.querySelector('[data-mi-intake-form]');
 const status = document.querySelector('[data-mi-form-status]');
 const fallback = document.querySelector('[data-mi-form-fallback]');
 const success = document.querySelector('[data-mi-form-success]');
 const submissionId = document.querySelector('[data-mi-submission-id]');
 const submitButton = form?.querySelector('button[type="submit"]');
-const analytics = createAnalytics({ adapter: createFirstPartyAdapter() });
-let started = false;
 
 function setStatus(message, kind = 'error') {
   if (!status) return;
@@ -25,12 +21,6 @@ function setBusy(busy) {
     ? 'Sending coverage request…'
     : 'Submit for coverage review <span aria-hidden="true">↗</span>';
 }
-
-form?.addEventListener('focusin', () => {
-  if (started) return;
-  started = true;
-  analytics.track('lead_form_started', { source: 'municipal_intelligence' });
-});
 
 form?.addEventListener('submit', async event => {
   event.preventDefault();
@@ -83,7 +73,6 @@ form?.addEventListener('submit', async event => {
     if (submissionId) submissionId.textContent = result.submissionId;
     success?.removeAttribute('hidden');
     success?.focus();
-    analytics.track('lead_form_submitted', { source: 'municipal_intelligence' });
   } catch {
     setStatus('Online delivery is unavailable. Please use the direct email option.');
     fallback?.removeAttribute('hidden');
