@@ -6,6 +6,7 @@ import './commercial-fixes.css';
 import './portfolio.css';
 import './ghostframe.css';
 import './demon-core.css';
+import './municipal-integration.css';
 import { buildReviewMailto } from './config.js';
 
 document.documentElement.classList.add('js');

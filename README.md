@@ -6,6 +6,8 @@ Static Vite multi-page site for GhostFrame Studios and its portfolio. GhostFrame
 
 - `/` — GhostFrame Studios company homepage
 - `/work/` — primary systems, maturity boundaries, and preserved product paths
+- `/work/municipal-intelligence/` — GhostFrame Municipal Property Risk Report, Tampa scope, pricing, methodology, limitations, and quote-first coverage-review intake
+- `/work/municipal-intelligence/sample-report/` — redacted validation-based preliminary sample report with evidence appendix
 - `/labs/` — research programs, prototypes, and emerging systems
 - `/about/` — studio identity, manifesto, and engineering method
 - `/demon-core/` — distinct adversarial-testing research experience, including Possession and the restricted Demon Chain teaser
@@ -30,6 +32,8 @@ npm run dev
 
 Vite serves the public pages and downloadable evidence. The Release Check request form submits JSON to the Vercel Function at `POST /api/release-check-request`. The existing `POST /api/pilot-request` function remains for backward compatibility.
 
+The Municipal Intelligence intake submits JSON to `POST /api/municipal-intelligence-lead`. It creates a lead and coverage-review request only: it does not authorize a government fee, create a Stripe invoice, place a paid municipal search, or record payment. The endpoint reuses the existing Resend delivery pattern, returns a deterministic submission reference, and logs only that reference, timestamp, and delivery outcome.
+
 ## Form configuration
 
 Release Check delivery requires:
@@ -38,7 +42,22 @@ Release Check delivery requires:
 - `RELEASE_CHECK_TO_EMAIL`
 - `RELEASE_CHECK_FROM_EMAIL`
 
+Municipal Intelligence delivery reuses those values by default. It can be routed separately with:
+
+- `MUNICIPAL_INTELLIGENCE_TO_EMAIL`
+- `MUNICIPAL_INTELLIGENCE_FROM_EMAIL`
+
+The separate Municipal values are optional; `RESEND_API_KEY` remains required.
+
 The endpoint validates and sanitizes bounded fields, does not log submissions, uses no-store responses, and does not write to an application database. If delivery is unavailable, the page exposes a safe direct-email fallback. The separate prepared technical-review email remains centralized in `src/config.js`.
+
+## Municipal Intelligence launch readiness
+
+The canonical local business configuration now records the GhostFrame Studios customer identity and contact path, customer-specific Stripe invoices, a solo two-pass quality review, recipient-specific Google Drive delivery with 14-day link expiration, restricted per-order document folders, the correction-request path, introductory pricing, and operating-time targets. These decisions are resolved and are not website blockers.
+
+The canonical commercial validator reports no configuration or packet errors. Its only remaining owner-configuration fields are the professional reviewer reference and professional review record reference. Public outreach, payment, or fulfillment remains gated until those review records exist. Before the first real customer, separately verify production Resend routing, the current Tampa government fee, and current provider timing.
+
+Website readiness does not prove production email configuration or business authorization. The server-side lead endpoint must fail closed if its Resend key, sender, or recipient is absent, and a deployment must not be treated as a completed commercial launch while the external gates above remain open.
 
 ## Verification
 

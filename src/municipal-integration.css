@@ -1,0 +1,17 @@
+.gf-system-municipal { --system: #69b9ff; }
+.gf-system-municipal .gf-system-visual { background: radial-gradient(circle at 46% 38%, rgba(105, 185, 255, .12), transparent 28%), #081116; }
+.gf-municipal-ledger { position: absolute; inset: 11%; display: grid; align-content: center; }
+.gf-municipal-parcel { position: relative; width: 190px; height: 130px; margin: 0 auto 50px; border: 1px solid #69b9ff; transform: rotate(-5deg); }
+.gf-municipal-parcel::before { position: absolute; inset: 17px; border: 1px solid rgba(143, 231, 228, .5); content: ""; }
+.gf-municipal-parcel::after { position: absolute; right: -70px; bottom: -30px; width: 128px; height: 1px; background: #69b9ff; content: ""; transform: rotate(32deg); }
+.gf-municipal-ledger > div:not(.gf-municipal-parcel) { display: grid; grid-template-columns: 100px 1fr auto; gap: 16px; padding: 13px 0; border-bottom: 1px solid var(--gf-line); color: var(--gf-muted); font: .59rem/1.4 "SFMono-Regular", Consolas, monospace; letter-spacing: .07em; text-transform: uppercase; }
+.gf-municipal-ledger span { color: #69b9ff; }
+.gf-municipal-ledger strong { color: var(--gf-paper); font-weight: 550; }
+.gf-municipal-ledger em { color: #8fe7e4; font-style: normal; }
+.gf-route-card-municipal { background: radial-gradient(circle at 88% 18%, rgba(105, 185, 255, .11), transparent 32%); }
+.gf-route-card-municipal .gf-kicker { color: #69b9ff; }
+
+@media (max-width: 620px) {
+  .gf-municipal-ledger > div:not(.gf-municipal-parcel) { grid-template-columns: 72px 1fr; }
+  .gf-municipal-ledger em { grid-column: 2; }
+}
